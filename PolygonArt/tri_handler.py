@@ -1,14 +1,15 @@
+from point import Point, slope
 import math
 import statistics as stat
 from enum import Enum
 
 
 class Direction(Enum):
-    NEUTRAL = (0, 0)
-    UP = (0, -1)
-    RIGHT = (1, 0)
-    DOWN = (0, 1)
-    LEFT = (-1, 0)
+    NEUTRAL = 0
+    UP = 1
+    RIGHT = 2
+    DOWN = 3
+    LEFT = 4
 
 
 class TriHandler:
@@ -79,15 +80,16 @@ class TriHandler:
         for iteration in range(num_iter):
             print("Iteration", (iteration + 1))
             for point in self.points:
-                if not on_edge(point.x, point.y, self.width, self.height):
-                    a_tris = point.adjacent_tris(self.width, self.height)
+                if not point.on_edge(self.width, self.height):
+                    a_tris = point.adjacent_tris()
                     m_colors = []  # parallel array for triangle colors
                     # we simplify by assuming initial median colors, calculating them one time rather than five
                     for i in range(len(a_tris)):
                         pix = pixels_in_tri(a_tris[i])
                         m_colors.append(self.median_color(pix))
 
-                    old_coords = point.x, point.y
+                    test_coords = point.cardinal_coords(shift_size)
+
                     least_v = self.net_variance(a_tris, m_colors)
                     best_d = Direction.NEUTRAL
                     for d in Direction:
@@ -146,58 +148,6 @@ class TriHandler:
             return None
 
 
-class Point:
-    def __init__(self, x, y):
-        self.x = x
-        self.y = y
-        self.adjacent = list()
-
-    def __lt__(self, other):
-        if self.x == other.x:
-            return self.y < other.y
-        return self.x < other.x
-
-    def __gt__(self, other):
-        if self.x == other.x:
-            return self.y > other.y
-        return self.x > other.x
-
-    def __eq__(self, other):
-        return self.x == other.x and self.y == other.y
-
-    def __str__(self):
-        return "({}, {})".format(self.x, self.y)
-
-    def adjacent_tris(self, iw, ih):
-        # sort by angle relative to self in clockwise order
-        self.adjacent.sort(key=lambda other: math.atan2(other.y - self.y, other.x - self.x))
-
-        num_adj = len(self.adjacent)
-        output = []
-        for i in range(num_adj):
-            p1 = self.adjacent[i]
-            if i == num_adj - 1:
-                p2 = self.adjacent[0]
-            else:
-                p2 = self.adjacent[i + 1]
-            if not (on_edge(p1.x, p1.y, iw, ih) or on_edge(p2.x, p2.y, iw, ih)):
-                output.append([self, p1, p2])
-
-        return output
-
-
-def on_edge(x, y, image_w, image_h):
-    return x_locked(x, image_w) or y_locked(y, image_h)
-
-
-def x_locked(x, image_w):
-    return x == image_w or x == 0
-
-
-def y_locked(y, image_h):
-        return y == image_h or y == 0
-
-
 def add_edge(p1, p2):
     p1.adjacent.append(p2)
     p2.adjacent.append(p1)
@@ -244,17 +194,3 @@ def pixels_in_half_tri(offset_origin, unordered_slope1, unordered_slope2, offset
                 out.append((x, y))
     return out
 
-
-def adjacent_tris(center):
-    adj_points = sorted(center.adjacent, key=lambda p: math.atan2(p.y - center.y, p.x - center.x))
-    out = list()
-    for i in range(len(adj_points) - 1):
-        out.append([adj_points[i], adj_points[i+1], center])
-    out.append([adj_points[0], adj_points[-1], center])
-    return out
-
-
-def slope(p1, p2):
-    if p1.x == p2.x:
-        return math.inf
-    return (p1.y - p2.y) / (p1.x - p2.x)

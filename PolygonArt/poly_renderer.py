@@ -18,7 +18,6 @@ class PolyRenderer:
         self.save_image(path)
 
     def bw_render(self, path):
-        tri_handler = th.TriHandler(self.i_pix)
         flag = True
         for tri in self.tris:
             flag = not flag
