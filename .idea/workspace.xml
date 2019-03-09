@@ -2,13 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a75c81e6-1442-4533-a475-b0c934976399" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/PolygonArt.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PolygonArt/point.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/poly_renderer.py" beforeDir="false" afterPath="$PROJECT_DIR$/PolygonArt/poly_renderer.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/big.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/bw_output.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/face.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/input.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/PolygonArt/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/output.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/parrot.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/point.py" beforeDir="false" afterPath="$PROJECT_DIR$/PolygonArt/point.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/PolygonArt/tri_handler.py" beforeDir="false" afterPath="$PROJECT_DIR$/PolygonArt/tri_handler.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -22,8 +24,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/PolygonArt/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="34">
-              <caret line="2" column="10" selection-start-line="2" selection-start-column="10" selection-end-line="2" selection-end-column="10" />
+            <state relative-caret-position="221">
+              <caret line="19" column="35" lean-forward="true" selection-start-line="19" selection-start-column="35" selection-end-line="19" selection-end-column="35" />
               <folding>
                 <element signature="e#0#28#0" expanded="true" />
               </folding>
@@ -34,7 +36,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/PolygonArt/poly_renderer.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="340">
+            <state relative-caret-position="85">
               <caret line="20" selection-start-line="20" selection-end-line="20" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
@@ -43,23 +45,27 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/PolygonArt/tri_handler.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2720">
-              <caret line="160" column="34" lean-forward="true" selection-start-line="160" selection-start-column="34" selection-end-line="160" selection-end-column="34" />
+            <state relative-caret-position="291">
+              <caret line="158" lean-forward="true" selection-start-line="158" selection-end-line="158" />
               <folding>
-                <element signature="e#0#23#0" expanded="true" />
+                <element signature="e#0#30#0" expanded="true" />
+                <element signature="e#244#647#0" />
+                <element signature="e#712#818#0" />
+                <element signature="e#854#2062#0" />
+                <element signature="e#4612#5217#0" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/PolygonArt/point.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="341">
-              <caret line="76" column="47" lean-forward="true" selection-start-line="76" selection-start-column="47" selection-end-line="76" selection-end-column="47" />
+            <state relative-caret-position="256">
+              <caret line="87" column="11" selection-start-line="87" selection-start-column="11" selection-end-line="87" selection-end-column="11" />
             </state>
           </provider>
         </entry>
@@ -101,9 +107,9 @@
         <option value="$PROJECT_DIR$/tri_handler.py" />
         <option value="$PROJECT_DIR$/main.py" />
         <option value="$PROJECT_DIR$/PolygonArt/poly_renderer.py" />
-        <option value="$PROJECT_DIR$/PolygonArt/tri_handler.py" />
-        <option value="$PROJECT_DIR$/PolygonArt/main.py" />
         <option value="$PROJECT_DIR$/PolygonArt/point.py" />
+        <option value="$PROJECT_DIR$/PolygonArt/main.py" />
+        <option value="$PROJECT_DIR$/PolygonArt/tri_handler.py" />
       </list>
     </option>
   </component>
@@ -239,9 +245,16 @@
     <entry file="file://$PROJECT_DIR$/main.py" />
     <entry file="file://$PROJECT_DIR$/poly_renderer.py" />
     <entry file="file://$PROJECT_DIR$/tri_handler.py" />
+    <entry file="file://$PROJECT_DIR$/PolygonArt/point.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="256">
+          <caret line="87" column="11" selection-start-line="87" selection-start-column="11" selection-end-line="87" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/PolygonArt/poly_renderer.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
+        <state relative-caret-position="85">
           <caret line="20" selection-start-line="20" selection-end-line="20" />
           <folding>
             <element signature="e#0#10#0" expanded="true" />
@@ -251,8 +264,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/PolygonArt/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="10" selection-start-line="2" selection-start-column="10" selection-end-line="2" selection-end-column="10" />
+        <state relative-caret-position="221">
+          <caret line="19" column="35" lean-forward="true" selection-start-line="19" selection-start-column="35" selection-end-line="19" selection-end-column="35" />
           <folding>
             <element signature="e#0#28#0" expanded="true" />
           </folding>
@@ -261,18 +274,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/PolygonArt/tri_handler.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2720">
-          <caret line="160" column="34" lean-forward="true" selection-start-line="160" selection-start-column="34" selection-end-line="160" selection-end-column="34" />
+        <state relative-caret-position="291">
+          <caret line="158" lean-forward="true" selection-start-line="158" selection-end-line="158" />
           <folding>
-            <element signature="e#0#23#0" expanded="true" />
+            <element signature="e#0#30#0" expanded="true" />
+            <element signature="e#244#647#0" />
+            <element signature="e#712#818#0" />
+            <element signature="e#854#2062#0" />
+            <element signature="e#4612#5217#0" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/PolygonArt/point.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="341">
-          <caret line="76" column="47" lean-forward="true" selection-start-line="76" selection-start-column="47" selection-end-line="76" selection-end-column="47" />
         </state>
       </provider>
     </entry>

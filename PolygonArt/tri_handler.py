@@ -3,6 +3,8 @@ import math
 import statistics as stat
 from enum import Enum
 
+import poly_renderer as rend
+
 
 class Direction(Enum):
     NEUTRAL = 0
@@ -25,14 +27,12 @@ class TriHandler:
         # tris is a list of 3-lists of points
         self.tris = list()
 
-    def get_tris(self, shift_size, adjust_iterations):
-        self.initialize()
+    def get_tris(self, initial_side, shift_size, adjust_iterations):
+        self.initialize(initial_side)
         self.adjust_points(shift_size, adjust_iterations)
         return list(self.tris)
 
-    def initialize(self):
-        side = 25
-
+    def initialize(self, side):
         true_sx = self.width / (self.width // side)
         true_sy = self.height / (self.height // side)
 
@@ -78,33 +78,51 @@ class TriHandler:
 
     def adjust_points(self, shift_size, num_iter):
         for iteration in range(num_iter):
+            test_renderer = rend.PolyRenderer(self.pixels, self.tris)
+            test_renderer.render('output\iteration{}.png'.format(iteration))
             print("Iteration", (iteration + 1))
-            for point in self.points:
+            for p in range(len(self.points)):
+                point = self.points[p]
                 if not point.on_edge(self.width, self.height):
+                    point.sort_adjacent()
+
                     a_tris = point.adjacent_tris()
                     m_colors = []  # parallel array for triangle colors
+
                     # we simplify by assuming initial median colors, calculating them one time rather than five
                     for i in range(len(a_tris)):
                         pix = pixels_in_tri(a_tris[i])
                         m_colors.append(self.median_color(pix))
 
-                    test_coords = point.cardinal_coords(shift_size)
+                    test_coords = point.get_test_coords(shift_size, p)
 
                     least_v = self.net_variance(a_tris, m_colors)
-                    best_d = Direction.NEUTRAL
-                    for d in Direction:
-                        if d is not Direction.NEUTRAL:
-                            vector = d.value
-                            point.x = old_coords[0] + shift_size * vector[0]
-                            point.y = old_coords[1] + shift_size * vector[1]
-                            variance = self.net_variance(a_tris, m_colors)
-                            if variance < least_v:
-                                least_v = variance
-                                best_d = d
+                    best_coords_i = 0
+                    for i in range(1, 4):
+                        point.x = test_coords[i][0]
+                        point.y = test_coords[i][1]
 
-                    vector = best_d.value
-                    point.x = old_coords[0] + shift_size * vector[0]
-                    point.y = old_coords[1] + shift_size * vector[1]
+                        '''
+                        Does recalculating the median help, and how much does it hurt?
+                        Future research may be necessary.
+                        
+                        m_colors = []
+                        for i2 in range(len(a_tris)):
+                            pix = pixels_in_tri(a_tris[i2])
+                            m_colors.append(self.median_color(pix))'''
+
+                        variance = self.net_variance(a_tris, m_colors)
+                        if variance < least_v:
+                            least_v = variance
+                            best_coords_i = i
+
+
+                    point.x = test_coords[best_coords_i][0]
+                    point.y = test_coords[best_coords_i][1]
+
+                    # if best_coords_i != 0:
+                    #     test_renderer = rend.PolyRenderer(self.pixels, self.tris)
+                    #     test_renderer.render('output\shift{}_{}.png'.format(p, Direction(best_coords_i).name))
 
     def net_variance(self, tris, colors):
         output = 0
@@ -124,6 +142,7 @@ class TriHandler:
                     output += this_var / len(pix)
         return output
 
+    # would the mean actually be preferable for the purposes of adjustment?
     def median_color(self, pix):
         if len(pix) == 0:
             return None

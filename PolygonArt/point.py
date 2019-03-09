@@ -46,7 +46,7 @@ class Point:
         return output
 
     # make sure adjacent points are sorted before calling this!
-    def get_test_coords(self, shift_size):
+    def get_test_coords(self, shift_size, p):
         if shift_size <= 0 or shift_size >= 1:
             print("Error: shift_size is not within the interval (0.0, 1.0)")
             return None
@@ -69,16 +69,35 @@ class Point:
             v_crossing = vertical_crossing(p1, p2, i_coords[0])
             h_crossing = horizontal_crossing(p1, p2, i_coords[1])
 
-            if left_x < h_crossing < i_coords[0]:
-                left_x = h_crossing
-            elif i_coords[0] < h_crossing < right_x:
-                right_x = h_crossing
+            if h_crossing is not None:
+                if (left_x is None or left_x <= h_crossing) and h_crossing < i_coords[0]:
+                    left_x = h_crossing
+                elif (right_x is None or right_x >= h_crossing) and h_crossing > i_coords[0]:
+                    right_x = h_crossing
+                # else:
+                    # print("Error: point is directly on a line")
 
-            if up_y < v_crossing < i_coords[1]:
-                left_x = h_crossing
-            elif i_coords[1] < v_crossing < down_y:
-                left_x = h_crossing
+            if v_crossing is not None:
+                if (up_y is None or up_y <= v_crossing) and v_crossing < i_coords[1]:
+                    up_y = v_crossing
+                elif (down_y is None or down_y >= v_crossing) and v_crossing > i_coords[1]:
+                    down_y = v_crossing
+                # else:
+                    # print("Error: point is directly on a line")
 
+        """
+        print(p, "-",
+              int(up_y - i_coords[1]),
+              int(right_x - i_coords[0]),
+              int(down_y - i_coords[1]),
+              int(left_x - i_coords[0]))
+              """
+
+        # UP, RIGHT, DOWN, LEFT
+        output.append((i_coords[0], i_coords[1] + (up_y - i_coords[1]) * shift_size))
+        output.append((i_coords[0] + (right_x - i_coords[0]) * shift_size, i_coords[1]))
+        output.append((i_coords[0], i_coords[1] + (down_y - i_coords[1]) * shift_size))
+        output.append((i_coords[0] + (left_x - i_coords[0]) * shift_size, i_coords[1]))
 
         return output
 
