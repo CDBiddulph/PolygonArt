@@ -3,15 +3,45 @@
   <component name="ChangeListManager">
     <list default="true" id="a75c81e6-1442-4533-a475-b0c934976399" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/big.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/bw_output.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/face.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/input.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/PolygonArt/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/PolygonArt/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/output.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/parrot.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/output/iteration0.png" beforeDir="false" afterPath="$PROJECT_DIR$/PolygonArt/output/iteration0.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/output/iteration1.png" beforeDir="false" afterPath="$PROJECT_DIR$/PolygonArt/output/iteration1.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/output/iteration10.png" beforeDir="false" afterPath="$PROJECT_DIR$/PolygonArt/output/iteration10.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/output/iteration11.png" beforeDir="false" afterPath="$PROJECT_DIR$/PolygonArt/output/iteration11.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/output/iteration12.png" beforeDir="false" afterPath="$PROJECT_DIR$/PolygonArt/output/iteration12.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/output/iteration13.png" beforeDir="false" afterPath="$PROJECT_DIR$/PolygonArt/output/iteration13.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/output/iteration14.png" beforeDir="false" afterPath="$PROJECT_DIR$/PolygonArt/output/iteration14.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/output/iteration15.png" beforeDir="false" afterPath="$PROJECT_DIR$/PolygonArt/output/iteration15.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/output/iteration16.png" beforeDir="false" afterPath="$PROJECT_DIR$/PolygonArt/output/iteration16.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/output/iteration17.png" beforeDir="false" afterPath="$PROJECT_DIR$/PolygonArt/output/iteration17.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/output/iteration18.png" beforeDir="false" afterPath="$PROJECT_DIR$/PolygonArt/output/iteration18.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/output/iteration19.png" beforeDir="false" afterPath="$PROJECT_DIR$/PolygonArt/output/iteration19.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/output/iteration2.png" beforeDir="false" afterPath="$PROJECT_DIR$/PolygonArt/output/iteration2.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/output/iteration20.png" beforeDir="false" afterPath="$PROJECT_DIR$/PolygonArt/output/iteration20.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/output/iteration21.png" beforeDir="false" afterPath="$PROJECT_DIR$/PolygonArt/output/iteration21.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/output/iteration22.png" beforeDir="false" afterPath="$PROJECT_DIR$/PolygonArt/output/iteration22.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/output/iteration23.png" beforeDir="false" afterPath="$PROJECT_DIR$/PolygonArt/output/iteration23.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/output/iteration24.png" beforeDir="false" afterPath="$PROJECT_DIR$/PolygonArt/output/iteration24.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/output/iteration25.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/output/iteration26.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/output/iteration27.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/output/iteration28.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/output/iteration29.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/output/iteration3.png" beforeDir="false" afterPath="$PROJECT_DIR$/PolygonArt/output/iteration3.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/output/iteration30.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/output/iteration31.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/output/iteration32.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/output/iteration33.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/output/iteration34.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/output/iteration35.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/output/iteration36.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/output/iteration4.png" beforeDir="false" afterPath="$PROJECT_DIR$/PolygonArt/output/iteration4.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/output/iteration5.png" beforeDir="false" afterPath="$PROJECT_DIR$/PolygonArt/output/iteration5.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/output/iteration6.png" beforeDir="false" afterPath="$PROJECT_DIR$/PolygonArt/output/iteration6.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/output/iteration7.png" beforeDir="false" afterPath="$PROJECT_DIR$/PolygonArt/output/iteration7.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/output/iteration8.png" beforeDir="false" afterPath="$PROJECT_DIR$/PolygonArt/output/iteration8.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/output/iteration9.png" beforeDir="false" afterPath="$PROJECT_DIR$/PolygonArt/output/iteration9.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/PolygonArt/point.py" beforeDir="false" afterPath="$PROJECT_DIR$/PolygonArt/point.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/tri_handler.py" beforeDir="false" afterPath="$PROJECT_DIR$/PolygonArt/tri_handler.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -24,8 +54,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/PolygonArt/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="221">
-              <caret line="19" column="35" lean-forward="true" selection-start-line="19" selection-start-column="35" selection-end-line="19" selection-end-column="35" />
+            <state relative-caret-position="425">
+              <caret line="25" column="30" selection-start-line="25" selection-start-column="30" selection-end-line="25" selection-end-column="30" />
               <folding>
                 <element signature="e#0#28#0" expanded="true" />
               </folding>
@@ -36,8 +66,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/PolygonArt/poly_renderer.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="20" selection-start-line="20" selection-end-line="20" />
+            <state relative-caret-position="148">
+              <caret line="18" selection-start-line="18" selection-end-line="18" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
               </folding>
@@ -48,14 +78,10 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/PolygonArt/tri_handler.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="291">
-              <caret line="158" lean-forward="true" selection-start-line="158" selection-end-line="158" />
+            <state relative-caret-position="182">
+              <caret line="132" column="28" lean-forward="true" selection-start-line="132" selection-start-column="28" selection-end-line="132" selection-end-column="28" />
               <folding>
                 <element signature="e#0#30#0" expanded="true" />
-                <element signature="e#244#647#0" />
-                <element signature="e#712#818#0" />
-                <element signature="e#854#2062#0" />
-                <element signature="e#4612#5217#0" />
               </folding>
             </state>
           </provider>
@@ -64,8 +90,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/PolygonArt/point.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="256">
-              <caret line="87" column="11" selection-start-line="87" selection-start-column="11" selection-end-line="87" selection-end-column="11" />
+            <state relative-caret-position="301">
+              <caret line="18" selection-start-line="18" selection-end-line="18" />
             </state>
           </provider>
         </entry>
@@ -107,9 +133,9 @@
         <option value="$PROJECT_DIR$/tri_handler.py" />
         <option value="$PROJECT_DIR$/main.py" />
         <option value="$PROJECT_DIR$/PolygonArt/poly_renderer.py" />
+        <option value="$PROJECT_DIR$/PolygonArt/tri_handler.py" />
         <option value="$PROJECT_DIR$/PolygonArt/point.py" />
         <option value="$PROJECT_DIR$/PolygonArt/main.py" />
-        <option value="$PROJECT_DIR$/PolygonArt/tri_handler.py" />
       </list>
     </option>
   </component>
@@ -199,7 +225,7 @@
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.15730338" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.09914078" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -247,41 +273,37 @@
     <entry file="file://$PROJECT_DIR$/tri_handler.py" />
     <entry file="file://$PROJECT_DIR$/PolygonArt/point.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="256">
-          <caret line="87" column="11" selection-start-line="87" selection-start-column="11" selection-end-line="87" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/PolygonArt/poly_renderer.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="20" selection-start-line="20" selection-end-line="20" />
-          <folding>
-            <element signature="e#0#10#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="301">
+          <caret line="18" selection-start-line="18" selection-end-line="18" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/PolygonArt/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="19" column="35" lean-forward="true" selection-start-line="19" selection-start-column="35" selection-end-line="19" selection-end-column="35" />
+        <state relative-caret-position="425">
+          <caret line="25" column="30" selection-start-line="25" selection-start-column="30" selection-end-line="25" selection-end-column="30" />
           <folding>
             <element signature="e#0#28#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/PolygonArt/poly_renderer.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="148">
+          <caret line="18" selection-start-line="18" selection-end-line="18" />
+          <folding>
+            <element signature="e#0#10#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/PolygonArt/tri_handler.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="291">
-          <caret line="158" lean-forward="true" selection-start-line="158" selection-end-line="158" />
+        <state relative-caret-position="182">
+          <caret line="132" column="28" lean-forward="true" selection-start-line="132" selection-start-column="28" selection-end-line="132" selection-end-column="28" />
           <folding>
             <element signature="e#0#30#0" expanded="true" />
-            <element signature="e#244#647#0" />
-            <element signature="e#712#818#0" />
-            <element signature="e#854#2062#0" />
-            <element signature="e#4612#5217#0" />
           </folding>
         </state>
       </provider>

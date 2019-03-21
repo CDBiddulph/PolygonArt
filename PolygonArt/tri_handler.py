@@ -116,7 +116,6 @@ class TriHandler:
                             least_v = variance
                             best_coords_i = i
 
-
                     point.x = test_coords[best_coords_i][0]
                     point.y = test_coords[best_coords_i][1]
 

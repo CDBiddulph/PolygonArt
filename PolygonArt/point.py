@@ -85,14 +85,6 @@ class Point:
                 # else:
                     # print("Error: point is directly on a line")
 
-        """
-        print(p, "-",
-              int(up_y - i_coords[1]),
-              int(right_x - i_coords[0]),
-              int(down_y - i_coords[1]),
-              int(left_x - i_coords[0]))
-              """
-
         # UP, RIGHT, DOWN, LEFT
         output.append((i_coords[0], i_coords[1] + (up_y - i_coords[1]) * shift_size))
         output.append((i_coords[0] + (right_x - i_coords[0]) * shift_size, i_coords[1]))
