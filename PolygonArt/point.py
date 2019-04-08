@@ -94,10 +94,7 @@ class Point:
     # make sure adjacent points are sorted before calling this!
     # negative h_push pushes the point left, positive h_push pushes it right
     # negative v_push pushes the point up, positive v_push pushes it down
-    def get_final_coords(self, v_push, h_push, shift_size):
-        if shift_size <= 0 or shift_size >= 1:
-            print("Error: shift_size is not within the interval (0.0, 1.0)")
-            return None
+    def get_final_coords(self, v_push, h_push, shift_multiplier, max_shift):
 
         # for some reason when h_push is zero it makes intersection return None (regardless of y?) so
         if h_push == 0:
@@ -125,8 +122,9 @@ class Point:
             for a in self.adjacent:
                 print(a)
 
-        return self.x + (closest_intersect[0] - self.x) * shift_size,\
-            self.y + (closest_intersect[1] - self.y) * shift_size
+        return inv_vector_interpolate(
+            (self.x, self.y), closest_intersect, (h_push, v_push), shift_multiplier, max_shift
+        )
 
     def on_edge(self, image_w, image_h):
         return self.x_locked(image_w) or self.y_locked(image_h)
@@ -182,3 +180,17 @@ def intersection(l1p1, l1p2, l2p1, l2p2):
         x = (b2 * c1 - b1 * c2) / determinant
         y = (a1 * c2 - a2 * c1) / determinant
         return x, y
+
+
+def inv_vector_interpolate(start_point, end_point, push_vector, multiplier, max_percent):
+    percent_interpolate = inv_interpolate(push_vector[0] / (start_point[0] - end_point[0]), multiplier) * max_percent
+    return start_point[0] + (end_point[0] - start_point[0]) * percent_interpolate,\
+        start_point[1] + (end_point[1] - start_point[1]) * percent_interpolate
+
+
+# should return a float between 0 and 1
+def inv_interpolate(push, multiplier):
+    output = (-1 / (1 + multiplier * abs(push))) + 1
+    if output < 0 or output > 1:
+        print("ERROR: inv_interpolate")
+    return output
