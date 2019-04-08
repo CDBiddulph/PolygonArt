@@ -2,7 +2,7 @@ import poly_renderer as rend
 import tri_handler as th
 import png
 
-reader = png.Reader("input\\parrot.png")
+reader = png.Reader("input\\small_parrot.png")
 
 img = reader.read()
 width = img[0]
@@ -23,7 +23,9 @@ else:
         pixel_array.append(r)
 
 tri_handler = th.TriHandler(pixel_array)
-tris = tri_handler.get_tris(40, .4, 25)  # initial side, shift size, adjust iterations
+
+# initial side, test shift size, final shift size, adjust iterations
+tris = tri_handler.get_tris(10, .1, .1, 50)
 
 renderer = rend.PolyRenderer(pixel_array, tris)
 renderer.render('output\\output.png')
