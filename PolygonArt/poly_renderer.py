@@ -1,5 +1,6 @@
 import png
 import tri_handler as th
+import colorsys
 
 
 class PolyRenderer:
@@ -24,6 +25,21 @@ class PolyRenderer:
             tri_pix = th.pixels_in_tri(tri)
             if len(tri_pix) != 0:
                 self.paint_pixels(tri_pix, (0, 0, 0) if flag else (255, 255, 255))
+        self.save_image(path)
+
+    variance_range = 20000
+
+    def variance_render(self, path):
+        tri_handler = th.TriHandler(self.i_pix)
+        for tri in self.tris:
+            tri_pix = th.pixels_in_tri(tri)
+            if len(tri_pix) != 0:
+                hue = tri_handler.variance(tri_pix) / self.variance_range
+                hue = hue if hue < 1 else 1
+                hue = (1 - hue) * 0.7
+                hue = colorsys.hsv_to_rgb(hue, 1.0, 1.0)
+                hue = (hue[0] * 255, hue[1] * 255, hue[2] * 255)
+                self.paint_pixels(tri_pix, hue)
         self.save_image(path)
 
     def paint_pixels(self, pix, color):

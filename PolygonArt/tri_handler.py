@@ -27,12 +27,21 @@ class TriHandler:
         # tris is a list of 3-lists of points
         self.tris = list()
 
-    def get_tris(self, initial_side, shift_size, adjust_iterations):
-        self.initialize(initial_side)
+    def get_rect_tris(self, side, shift_size, adjust_iterations):
+        self.rect_initialize(side)
         self.adjust_points(shift_size, adjust_iterations)
         return list(self.tris)
 
-    def initialize(self, side):
+    def get_smart_tris(self, target_v, v_allowance,
+                       shift_size, adjust_iterations):
+        self.rect_initialize(target_v, v_allowance)
+        self.adjust_points(shift_size, adjust_iterations)
+        return list(self.tris)
+
+    # def smart_initialize(self, target_v, v_allowance):
+
+
+    def rect_initialize(self, side):
         true_sx = self.width / (self.width // side)
         true_sy = self.height / (self.height // side)
 
@@ -80,6 +89,8 @@ class TriHandler:
         for iteration in range(num_iter):
             test_renderer = rend.PolyRenderer(self.pixels, self.tris)
             test_renderer.render('output\iteration{}.png'.format(iteration))
+            test_renderer.variance_render('output\\v_iteration{}.png'.format(iteration))
+            self.print_image_variance()
             print("Iteration", (iteration + 1))
             for p in range(len(self.points)):
                 point = self.points[p]
@@ -102,14 +113,8 @@ class TriHandler:
                         point.x = test_coords[i][0]
                         point.y = test_coords[i][1]
 
-                        '''
-                        Does recalculating the median help, and how much does it hurt?
-                        Future research may be necessary.
-                        
-                        m_colors = []
-                        for i2 in range(len(a_tris)):
-                            pix = pixels_in_tri(a_tris[i2])
-                            m_colors.append(self.median_color(pix))'''
+                        # Does recalculating the median help, and how much does it hurt?
+                        # Future research may be necessary.
 
                         variance = self.net_variance(a_tris, m_colors)
                         if variance < least_v:
@@ -127,19 +132,32 @@ class TriHandler:
         output = 0
 
         for i in range(len(tris)):
-            med = colors[i]
-            if med:
-                this_var = 0
+            median = colors[i]
+            if median:
                 pix = pixels_in_tri(tris[i])
                 if len(pix) != 0:
-                    for p in pix:
-                        color = self.get_color(p)
-                        if color:
-                            this_var += math.pow(color[0] - med[0], 2)
-                            this_var += math.pow(color[1] - med[1], 2)
-                            this_var += math.pow(color[2] - med[2], 2)
-                    output += this_var / len(pix)
+                    output += self.variance(pix)  # , median)
         return output
+
+    def print_image_variance(self):
+        output = 0
+        for tri in self.tris:
+            tri_pix = pixels_in_tri(tri)
+            if len(tri_pix) != 0:
+                output = self.variance(tri_pix)
+        print("Image variance:", output)
+
+    def variance(self, pix, median=None):
+        if median is None:
+            median = self.median_color(pix)
+        squared_sum = 0
+        for p in pix:
+            color = self.get_color(p)
+            if color:
+                squared_sum += math.pow(color[0] - median[0], 2)
+                squared_sum += math.pow(color[1] - median[1], 2)
+                squared_sum += math.pow(color[2] - median[2], 2)
+        return squared_sum / len(pix)
 
     # would the mean actually be preferable for the purposes of adjustment?
     def median_color(self, pix):

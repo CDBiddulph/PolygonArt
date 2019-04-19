@@ -23,7 +23,13 @@ else:
         pixel_array.append(r)
 
 tri_handler = th.TriHandler(pixel_array)
-tris = tri_handler.get_tris(40, .4, 25)  # initial side, shift size, adjust iterations
+
+# side length, shift size, adjust iterations
+tris = tri_handler.get_rect_tris(40, .1, 25)
+
+# target variance, variance allowance, minimum protrusion, minimum leap
+# shift size, adjust iterations
+# tris = tri_handler.get_smart_tris(40, .4, 25)
 
 renderer = rend.PolyRenderer(pixel_array, tris)
 renderer.render('output\\output.png')
