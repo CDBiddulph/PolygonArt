@@ -2,6 +2,7 @@ from point import Point, slope
 import math
 import statistics as stat
 from enum import Enum
+import queue
 
 import poly_renderer as rend
 
@@ -26,20 +27,52 @@ class TriHandler:
         self.points = list()
         # tris is a list of 3-lists of points
         self.tris = list()
+        # edge queue is a FIFO queue of 2-tuples of points
+        self.edge_queue = queue.Queue()
 
     def get_rect_tris(self, side, shift_size, adjust_iterations):
         self.rect_initialize(side)
         self.adjust_points(shift_size, adjust_iterations)
         return list(self.tris)
 
-    def get_smart_tris(self, target_v, v_allowance,
+    def get_smart_tris(self, target_v, v_allowance, min_leap,
                        shift_size, adjust_iterations):
-        self.rect_initialize(target_v, v_allowance)
+        self.smart_initialize(target_v, v_allowance, min_leap)
         self.adjust_points(shift_size, adjust_iterations)
         return list(self.tris)
 
-    # def smart_initialize(self, target_v, v_allowance):
+    def smart_initialize(self, target_v, v_allowance, min_leap):
+        self.add_first_tri()
 
+        tri_num = 0
+        while not self.edge_queue.empty():
+            edge = self.edge_queue.get()
+            p1 = edge[0]
+            p2 = edge[1]
+
+            
+
+            test_renderer = rend.PolyRenderer(self.pixels, self.tris)
+            test_renderer.render('output\\output{0}.png'.format(tri_num))
+            test_renderer.variance_render('output\\variance{0}.png'.format(tri_num))
+            tri_num += 1
+
+    def add_first_tri(self):
+        p1 = Point(0, 0)
+        p2 = Point(20, 0)
+        p3 = Point(0, 20)
+
+        self.points.append(p1)
+        self.points.append(p2)
+        self.points.append(p3)
+
+        add_edge(p1, p2)
+        add_edge(p2, p3)
+        add_edge(p3, p1)
+
+        self.add_tri(p1, p2, p3)
+
+        self.edge_queue.put((p2, p3))
 
     def rect_initialize(self, side):
         true_sx = self.width / (self.width // side)
@@ -87,11 +120,11 @@ class TriHandler:
 
     def adjust_points(self, shift_size, num_iter):
         for iteration in range(num_iter):
-            test_renderer = rend.PolyRenderer(self.pixels, self.tris)
-            test_renderer.render('output\iteration{}.png'.format(iteration))
-            test_renderer.variance_render('output\\v_iteration{}.png'.format(iteration))
-            self.print_average_variance()
-            print("Iteration", (iteration + 1))
+            # test_renderer = rend.PolyRenderer(self.pixels, self.tris)
+            # test_renderer.render('output\iteration{}.png'.format(iteration))
+            # test_renderer.variance_render('output\\v_iteration{}.png'.format(iteration))
+            # self.print_average_variance()
+            # print("Iteration", (iteration + 1))
             for p in range(len(self.points)):
                 point = self.points[p]
                 if not point.on_edge(self.width, self.height):

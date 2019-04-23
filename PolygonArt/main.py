@@ -25,12 +25,16 @@ else:
 tri_handler = th.TriHandler(pixel_array)
 
 # side length, shift size, adjust iterations
-tris = tri_handler.get_rect_tris(15, .2, 25)
+# tris = tri_handler.get_rect_tris(15, .2, 25)
 
-# target variance, variance allowance, minimum protrusion, minimum leap
+# target variance, variance allowance, minimum leap,
 # shift size, adjust iterations
-# tris = tri_handler.get_smart_tris(40, .4, 25)
+tris = tri_handler.get_smart_tris(1500, 100, 2.0,
+                                  .2, 1)
+
+# tri_handler.print_average_variance()
 
 renderer = rend.PolyRenderer(pixel_array, tris)
-renderer.render('output\\output.png')
-renderer.bw_render('output\\bw_output.png')
+# renderer.render('output\\output.png')
+# renderer.variance_render('output\\variance.png')
+# renderer.bw_render('output\\bw_output.png')
