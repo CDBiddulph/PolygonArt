@@ -90,7 +90,7 @@ class TriHandler:
             test_renderer = rend.PolyRenderer(self.pixels, self.tris)
             test_renderer.render('output\iteration{}.png'.format(iteration))
             test_renderer.variance_render('output\\v_iteration{}.png'.format(iteration))
-            self.print_image_variance()
+            self.print_average_variance()
             print("Iteration", (iteration + 1))
             for p in range(len(self.points)):
                 point = self.points[p]
@@ -136,16 +136,8 @@ class TriHandler:
             if median:
                 pix = pixels_in_tri(tris[i])
                 if len(pix) != 0:
-                    output += self.variance(pix)  # , median)
+                    output += self.variance(pix, median)
         return output
-
-    def print_image_variance(self):
-        output = 0
-        for tri in self.tris:
-            tri_pix = pixels_in_tri(tri)
-            if len(tri_pix) != 0:
-                output = self.variance(tri_pix)
-        print("Image variance:", output)
 
     def variance(self, pix, median=None):
         if median is None:
@@ -158,6 +150,14 @@ class TriHandler:
                 squared_sum += math.pow(color[1] - median[1], 2)
                 squared_sum += math.pow(color[2] - median[2], 2)
         return squared_sum / len(pix)
+
+    def print_average_variance(self):
+        output = 0
+        for tri in self.tris:
+            tri_pix = pixels_in_tri(tri)
+            if len(tri_pix) != 0:
+                output += self.variance(tri_pix)  # TODO: this never seems to be accurate
+        print("Average variance:", output / len(self.tris))
 
     # would the mean actually be preferable for the purposes of adjustment?
     def median_color(self, pix):

@@ -2,7 +2,7 @@ import poly_renderer as rend
 import tri_handler as th
 import png
 
-reader = png.Reader("input\\parrot.png")
+reader = png.Reader("input\\medium_parrot.png")
 
 img = reader.read()
 width = img[0]
@@ -25,7 +25,7 @@ else:
 tri_handler = th.TriHandler(pixel_array)
 
 # side length, shift size, adjust iterations
-tris = tri_handler.get_rect_tris(40, .1, 25)
+tris = tri_handler.get_rect_tris(15, .2, 25)
 
 # target variance, variance allowance, minimum protrusion, minimum leap
 # shift size, adjust iterations
