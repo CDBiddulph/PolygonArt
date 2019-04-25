@@ -27,8 +27,8 @@ class TriHandler:
         self.points = list()
         # tris is a list of 3-lists of points
         self.tris = list()
-        # edge queue is a FIFO queue of 2-tuples of points
-        self.edge_queue = queue.Queue()
+        # border edges is a list of 2-tuples of points
+        self.border_edges = []
 
     def get_rect_tris(self, side, shift_size, adjust_iterations):
         self.rect_initialize(side)
@@ -45,12 +45,10 @@ class TriHandler:
         self.add_first_tri()
 
         tri_num = 0
-        while not self.edge_queue.empty():
-            edge = self.edge_queue.get()
+        while len(self.border_edges) != 0:
+            edge = self.border_edges.pop(0)
             p1 = edge[0]
             p2 = edge[1]
-
-            
 
             test_renderer = rend.PolyRenderer(self.pixels, self.tris)
             test_renderer.render('output\\output{0}.png'.format(tri_num))
