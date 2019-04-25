@@ -24,8 +24,8 @@ else:
 
 tri_handler = th.TriHandler(pixel_array)
 
-# initial side, test shift size, final shift multiplier, max final shift percentage, adjust iterations
-tris = tri_handler.get_tris(10, 0.1, 0.0001, 0.8, 50)
+# initial side, test shift size, max final shift percentage, adjust iterations
+tris = tri_handler.get_tris(10, 0.1, 0.1, 50)
 
 renderer = rend.PolyRenderer(pixel_array, tris)
 renderer.render('output\\output.png')

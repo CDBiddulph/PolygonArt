@@ -27,9 +27,9 @@ class TriHandler:
         # tris is a list of 3-lists of points
         self.tris = list()
 
-    def get_tris(self, initial_side, test_shift_size, final_shift_multiplier, max_final_shift, adjust_iterations):
+    def get_tris(self, initial_side, test_shift_size, max_final_shift, adjust_iterations):
         self.initialize(initial_side)
-        self.adjust_points(test_shift_size, final_shift_multiplier, max_final_shift, adjust_iterations)
+        self.adjust_points(test_shift_size, max_final_shift, adjust_iterations)
         return list(self.tris)
 
     def initialize(self, side):
@@ -76,7 +76,7 @@ class TriHandler:
             return
         self.tris.append([p1, p2, p3])
 
-    def adjust_points(self, t_shift_size, f_shift_multiplier, max_f_shift, num_iter):
+    def adjust_points(self, t_shift_size, max_f_shift, num_iter):
         for p in range(len(self.points)):
             self.points[p].sort_adjacent()
         for iteration in range(num_iter):
@@ -127,7 +127,7 @@ class TriHandler:
                     vertical_push = variances[0] - variances[2]
 
                     final_point =\
-                        point.get_final_coords(vertical_push, horizontal_push, f_shift_multiplier, max_f_shift)
+                        point.get_final_coords(vertical_push, horizontal_push, max_f_shift)
 
                     point.x = final_point[0]
                     point.y = final_point[1]
