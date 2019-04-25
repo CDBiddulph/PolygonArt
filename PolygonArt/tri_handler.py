@@ -2,7 +2,6 @@ from point import Point, slope
 import math
 import statistics as stat
 from enum import Enum
-import queue
 
 import poly_renderer as rend
 
@@ -30,15 +29,15 @@ class TriHandler:
         # border edges is a list of 2-tuples of points
         self.border_edges = []
 
-    def get_rect_tris(self, side, shift_size, adjust_iterations):
-        self.rect_initialize(side)
-        self.adjust_points(shift_size, adjust_iterations)
+    def get_rect_tris(self, initial_side, test_shift_size, max_final_shift, adjust_iterations):
+        self.rect_initialize(initial_side)
+        self.adjust_points(test_shift_size, max_final_shift, adjust_iterations)
         return list(self.tris)
 
     def get_smart_tris(self, target_v, v_allowance, min_leap,
-                       shift_size, adjust_iterations):
+                       test_shift_size, final_shift_size, adjust_iterations):
         self.smart_initialize(target_v, v_allowance, min_leap)
-        self.adjust_points(shift_size, adjust_iterations)
+        self.adjust_points(test_shift_size, final_shift_size, adjust_iterations)
         return list(self.tris)
 
     def smart_initialize(self, target_v, v_allowance, min_leap):
@@ -116,7 +115,9 @@ class TriHandler:
             return
         self.tris.append([p1, p2, p3])
 
-    def adjust_points(self, shift_size, num_iter):
+    def adjust_points(self, t_shift_size, max_f_shift, num_iter):
+        for p in range(len(self.points)):
+            self.points[p].sort_adjacent()
         for iteration in range(num_iter):
             # test_renderer = rend.PolyRenderer(self.pixels, self.tris)
             # test_renderer.render('output\iteration{}.png'.format(iteration))
@@ -126,8 +127,6 @@ class TriHandler:
             for p in range(len(self.points)):
                 point = self.points[p]
                 if not point.on_edge(self.width, self.height):
-                    point.sort_adjacent()
-
                     a_tris = point.adjacent_tris()
                     m_colors = []  # parallel array for triangle colors
 
@@ -136,28 +135,37 @@ class TriHandler:
                         pix = pixels_in_tri(a_tris[i])
                         m_colors.append(self.median_color(pix))
 
-                    test_coords = point.get_test_coords(shift_size, p)
+                    test_coords = point.get_test_coords(t_shift_size)
 
-                    least_v = self.net_variance(a_tris, m_colors)
-                    best_coords_i = 0
-                    for i in range(1, 4):
+                    # up, right, down, left
+                    variances = []
+
+                    o_point = point.x, point.y
+
+                    for i in range(0, 4):
                         point.x = test_coords[i][0]
                         point.y = test_coords[i][1]
 
                         # Does recalculating the median help, and how much does it hurt?
                         # Future research may be necessary.
 
-                        variance = self.net_variance(a_tris, m_colors)
-                        if variance < least_v:
-                            least_v = variance
-                            best_coords_i = i
+                        variances.append(self.net_variance(a_tris, m_colors))
 
-                    point.x = test_coords[best_coords_i][0]
-                    point.y = test_coords[best_coords_i][1]
+                    # reset point to its original position
+                    # resetting y happens to be redundant in this case
+                    point.x = o_point[0]
+                    point.y = o_point[1]
 
-                    # if best_coords_i != 0:
-                    #     test_renderer = rend.PolyRenderer(self.pixels, self.tris)
-                    #     test_renderer.render('output\shift{}_{}.png'.format(p, Direction(best_coords_i).name))
+                    # negative values push the point left, positive values push it right
+                    horizontal_push = variances[3] - variances[1]
+                    # negative values push the point up, positive values push it down
+                    vertical_push = variances[0] - variances[2]
+
+                    final_point =\
+                        point.get_final_coords(vertical_push, horizontal_push, max_f_shift)
+
+                    point.x = final_point[0]
+                    point.y = final_point[1]
 
     def net_variance(self, tris, colors):
         output = 0

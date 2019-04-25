@@ -46,15 +46,13 @@ class Point:
         return output
 
     # make sure adjacent points are sorted before calling this!
-    def get_test_coords(self, shift_size, p):
+    # returns an array with four points, one in each direction
+    def get_test_coords(self, shift_size):
         if shift_size <= 0 or shift_size >= 1:
             print("Error: shift_size is not within the interval (0.0, 1.0)")
             return None
 
-        i_coords = (self.x, self.y)
-
-        # output[0] is just the original coordinates, the rest are new
-        output = [i_coords]
+        output = []
         num_adj = len(self.adjacent)
 
         up_y = None
@@ -66,32 +64,67 @@ class Point:
             p1 = self.adjacent[i]
             p2 = self.adjacent[(i + 1) % num_adj]
 
-            v_crossing = vertical_crossing(p1, p2, i_coords[0])
-            h_crossing = horizontal_crossing(p1, p2, i_coords[1])
+            v_crossing = vertical_crossing(p1, p2, self.x)
+            h_crossing = horizontal_crossing(p1, p2, self.y)
 
             if h_crossing is not None:
-                if (left_x is None or left_x <= h_crossing) and h_crossing < i_coords[0]:
+                if (left_x is None or left_x <= h_crossing) and h_crossing < self.x:
                     left_x = h_crossing
-                elif (right_x is None or right_x >= h_crossing) and h_crossing > i_coords[0]:
+                elif (right_x is None or right_x >= h_crossing) and h_crossing > self.x:
                     right_x = h_crossing
                 # else:
                     # print("Error: point is directly on a line")
 
             if v_crossing is not None:
-                if (up_y is None or up_y <= v_crossing) and v_crossing < i_coords[1]:
+                if (up_y is None or up_y <= v_crossing) and v_crossing < self.y:
                     up_y = v_crossing
-                elif (down_y is None or down_y >= v_crossing) and v_crossing > i_coords[1]:
+                elif (down_y is None or down_y >= v_crossing) and v_crossing > self.y:
                     down_y = v_crossing
                 # else:
                     # print("Error: point is directly on a line")
 
         # UP, RIGHT, DOWN, LEFT
-        output.append((i_coords[0], i_coords[1] + (up_y - i_coords[1]) * shift_size))
-        output.append((i_coords[0] + (right_x - i_coords[0]) * shift_size, i_coords[1]))
-        output.append((i_coords[0], i_coords[1] + (down_y - i_coords[1]) * shift_size))
-        output.append((i_coords[0] + (left_x - i_coords[0]) * shift_size, i_coords[1]))
+        output.append((self.x, self.y + (up_y - self.y) * shift_size))
+        output.append((self.x + (right_x - self.x) * shift_size, self.y))
+        output.append((self.x, self.y + (down_y - self.y) * shift_size))
+        output.append((self.x + (left_x - self.x) * shift_size, self.y))
 
         return output
+
+    # make sure adjacent points are sorted before calling this!
+    # negative h_push pushes the point left, positive h_push pushes it right
+    # negative v_push pushes the point up, positive v_push pushes it down
+    def get_final_coords(self, v_push, h_push, shift_percent):
+
+        # for some reason when h_push is zero it makes intersection return None (regardless of y?) so
+        if h_push == 0:
+            return self.x, self.y
+
+        num_adj = len(self.adjacent)
+
+        closest_intersect = None
+
+        for i in range(num_adj):
+            p1 = self.adjacent[i]
+            p2 = self.adjacent[(i + 1) % num_adj]
+
+            intersect = intersection((p1.x, p1.y), (p2.x, p2.y), (self.x, self.y), (self.x + h_push, self.y + v_push))
+
+            if intersect is not None:
+                if (h_push < 0 and intersect[0] < self.x and
+                   (closest_intersect is None or intersect[0] > closest_intersect[0])) or\
+                   (h_push > 0 and intersect[0] > self.x and
+                   (closest_intersect is None or intersect[0] < closest_intersect[0])):
+                    closest_intersect = intersect
+
+        if closest_intersect is None:
+            print("ERROR: None intersect:", "\n", h_push, v_push, "\n", self.x, self.y)
+            for a in self.adjacent:
+                print(a)
+
+        return vector_interpolate(
+            (self.x, self.y), closest_intersect, shift_percent
+        )
 
     def on_edge(self, image_w, image_h):
         return self.x_locked(image_w) or self.y_locked(image_h)
@@ -127,3 +160,28 @@ def horizontal_crossing(p1, p2, y):
     if s == 0:
         return None
     return p1.x + 1/s * (y - p1.y)
+
+
+# basic algorithm found online, uses determinants
+def intersection(l1p1, l1p2, l2p1, l2p2):
+    a1 = l1p2[1] - l1p1[1]
+    b1 = l1p1[0] - l1p2[0]
+    c1 = a1 * l1p1[0] + b1 * l1p1[1]
+
+    a2 = l2p2[1] - l2p1[1]
+    b2 = l2p1[0] - l2p2[0]
+    c2 = a2 * l2p1[0] + b2 * l2p1[1]
+
+    determinant = a1 * b2 - a2 * b1
+
+    if determinant == 0:
+        return None
+    else:
+        x = (b2 * c1 - b1 * c2) / determinant
+        y = (a1 * c2 - a2 * c1) / determinant
+        return x, y
+
+
+def vector_interpolate(start_point, end_point, percent):
+    return start_point[0] + (end_point[0] - start_point[0]) * percent,\
+        start_point[1] + (end_point[1] - start_point[1]) * percent
