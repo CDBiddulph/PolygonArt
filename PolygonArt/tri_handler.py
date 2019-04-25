@@ -49,10 +49,17 @@ class TriHandler:
             p1 = edge[0]
             p2 = edge[1]
 
+            longest_pb = self.longest_perpendicular_bisector(edge)
+
             test_renderer = rend.PolyRenderer(self.pixels, self.tris)
             test_renderer.render('output\\output{0}.png'.format(tri_num))
             test_renderer.variance_render('output\\variance{0}.png'.format(tri_num))
             tri_num += 1
+
+    # edge[0] -> endpoint of this segment -> edge[1] will be clockwise
+    def longest_perpendicular_bisector(self, input_edge):
+        return 0, 0  # TODO
+
 
     def add_first_tri(self):
         p1 = Point(0, 0)

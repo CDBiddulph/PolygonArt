@@ -182,6 +182,15 @@ def intersection(l1p1, l1p2, l2p1, l2p2):
         return x, y
 
 
+def segment_intersection(s1p1, s1p2, s2p1, s2p2):
+    intersect = intersection(s1p1, s1p2, s2p1, s2p2)
+
+    lower = max(min(s1p1[0], s1p2[0]), min(s2p1[0], s2p2[0]))
+    upper = min(max(s1p1[0], s1p2[0]), max(s2p1[0], s2p2[0]))
+
+    return intersect if lower <= intersect[0] <= upper else None
+
+
 def vector_interpolate(start_point, end_point, percent):
     return start_point[0] + (end_point[0] - start_point[0]) * percent,\
         start_point[1] + (end_point[1] - start_point[1]) * percent
