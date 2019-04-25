@@ -70,7 +70,7 @@ class TriHandler:
 
         self.add_tri(p1, p2, p3)
 
-        self.edge_queue.put((p2, p3))
+        self.border_edges.append((p2, p3))
 
     def rect_initialize(self, side):
         true_sx = self.width / (self.width // side)
