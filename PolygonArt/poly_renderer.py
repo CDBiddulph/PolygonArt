@@ -42,6 +42,28 @@ class PolyRenderer:
                 self.paint_pixels(tri_pix, hue)
         self.save_image(path)
 
+    v_from_edge_range = 5000
+
+    def v_from_edge_render(self, path, p1, p2):
+        tri_handler = th.TriHandler(self.i_pix)
+        for x in range(int(len(self.o_pix[0]) / 3)):
+            for y in range(len(self.o_pix)):
+                tri_pix = th.pixels_in_tri([(p1[0] - 0.5, p1[1] - 0.5), (p2[0] - 0.5, p2[1] - 0.5), (x - 0.5, y - 0.5)])
+                if len(tri_pix) != 0:
+                    hue = tri_handler.variance(tri_pix, cap=self.v_from_edge_range) / self.v_from_edge_range
+                    hue = hue if hue < 1 else 1
+                    hue = (1 - hue) * 0.7
+                    hue = colorsys.hsv_to_rgb(hue, 1.0, 1.0)
+                    hue = (hue[0] * 255, hue[1] * 255, hue[2] * 255)
+                    self.paint_pixel((x, y), hue)
+            # print("Column", x)
+
+        pink = (255, 0, 255)
+        self.paint_pixel(p1, pink)
+        self.paint_pixel(p2, pink)
+
+        self.save_image(path)
+
     def paint_pixels(self, pix, color):
         for p in pix:
             self.paint_pixel(p, color)

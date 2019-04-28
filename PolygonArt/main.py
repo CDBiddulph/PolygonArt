@@ -1,6 +1,7 @@
 import poly_renderer as rend
 import tri_handler as th
 import png
+import time
 
 reader = png.Reader("input\\small_parrot.png")
 
@@ -32,6 +33,10 @@ tris = tri_handler.get_smart_tris(1500, 100, 2.0, 0.2, 0.1, 1)
 # tris = tri_handler.get_rect_tris(7, 0.1, 0.05, 500)
 
 renderer = rend.PolyRenderer(pixel_array, tris)
+
+t = time.time()
+renderer.v_from_edge_render('output\\from_edge.png', (0, 10), (10, 0))
+print(time.time() - t)
 # renderer.render('output\\output.png')
 # renderer.variance_render('output\\variance.png')
 # renderer.bw_render('output\\bw_output.png')

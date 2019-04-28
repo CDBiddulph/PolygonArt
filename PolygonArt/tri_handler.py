@@ -2,6 +2,7 @@ from point import Point, slope
 import math
 import statistics as stat
 from enum import Enum
+import random
 
 import poly_renderer as rend
 
@@ -56,15 +57,15 @@ class TriHandler:
             test_renderer.variance_render('output\\variance{0}.png'.format(tri_num))
             tri_num += 1
 
-    # edge[0] -> endpoint of this segment -> edge[1] will be clockwise
+    # input_edge[0] -> endpoint of this segment -> input_edge[1] will be clockwise
     def longest_perpendicular_bisector(self, input_edge):
         return 0, 0  # TODO
 
 
     def add_first_tri(self):
         p1 = Point(0, 0)
-        p2 = Point(20, 0)
-        p3 = Point(0, 20)
+        p2 = Point(10, 0)
+        p3 = Point(0, 10)
 
         self.points.append(p1)
         self.points.append(p2)
@@ -185,16 +186,20 @@ class TriHandler:
                     output += self.variance(pix, median)
         return output
 
-    def variance(self, pix, median=None):
+    def variance(self, pix, median=None, cap=None):
         if median is None:
             median = self.median_color(pix)
         squared_sum = 0
+        if cap is not None:
+            ss_cap = cap * len(pix)
         for p in pix:
             color = self.get_color(p)
             if color:
                 squared_sum += math.pow(color[0] - median[0], 2)
                 squared_sum += math.pow(color[1] - median[1], 2)
                 squared_sum += math.pow(color[2] - median[2], 2)
+                if cap is not None and squared_sum > ss_cap:
+                    return cap
         return squared_sum / len(pix)
 
     def print_average_variance(self):
@@ -206,13 +211,14 @@ class TriHandler:
         print("Average variance:", output / len(self.tris))
 
     # would the mean actually be preferable for the purposes of adjustment?
-    def median_color(self, pix):
+    def median_color(self, pix, sample_size=math.inf):
         if len(pix) == 0:
             return None
         r = []
         g = []
         b = []
-        for p in pix:
+        pix_sample = pix if sample_size > len(pix) else random.sample(pix, sample_size)
+        for p in pix_sample:
             color = self.get_color(p)
             if color:
                 r.append(color[0])
@@ -236,6 +242,14 @@ def add_edge(p1, p2):
 
 
 def pixels_in_tri(tri):
+    # if the elements of tris are tuples, turn them into points
+    if isinstance(tri[0], tuple):
+        tri[0] = Point(tri[0][0], tri[0][1])
+    if isinstance(tri[1], tuple):
+        tri[1] = Point(tri[1][0], tri[1][1])
+    if isinstance(tri[2], tuple):
+        tri[2] = Point(tri[2][0], tri[2][1])
+
     tri.sort()
     x_cutoff = tri[1].x
     common_slope = slope(tri[0], tri[2])
