@@ -83,11 +83,14 @@ class Point:
                 # else:
                     # print("Error: point is directly on a line")
 
-        # UP, RIGHT, DOWN, LEFT
-        output.append((self.x, self.y + (up_y - self.y) * shift_size))
-        output.append((self.x + (right_x - self.x) * shift_size, self.y))
-        output.append((self.x, self.y + (down_y - self.y) * shift_size))
-        output.append((self.x + (left_x - self.x) * shift_size, self.y))
+        try:
+            # UP, RIGHT, DOWN, LEFT
+            output.append((self.x, self.y + (up_y - self.y) * shift_size))
+            output.append((self.x + (right_x - self.x) * shift_size, self.y))
+            output.append((self.x, self.y + (down_y - self.y) * shift_size))
+            output.append((self.x + (left_x - self.x) * shift_size, self.y))
+        except TypeError:
+            print("Error:", p1, p2, self.x, self.y)
 
         return output
 
@@ -129,11 +132,13 @@ class Point:
     def on_edge(self, image_w, image_h):
         return self.x_locked(image_w) or self.y_locked(image_h)
 
+    # the "0.0001"s are to safeguard against floating point errors
+    # maybe there's a better way to do it, but I don't know what
     def x_locked(self, image_w):
-        return self.x == image_w or self.x == 0
+        return self.x >= image_w - 0.0001 or self.x <= 0.0001
 
     def y_locked(self, image_h):
-            return self.y == image_h or self.y == 0
+            return self.y >= image_h - 0.0001 or self.y <= 0.0001
 
 
 # from the perspective of the image,

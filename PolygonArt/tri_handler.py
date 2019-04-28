@@ -126,11 +126,11 @@ class TriHandler:
         for p in range(len(self.points)):
             self.points[p].sort_adjacent()
         for iteration in range(num_iter):
-            # test_renderer = rend.PolyRenderer(self.pixels, self.tris)
-            # test_renderer.render('output\iteration{}.png'.format(iteration))
+            test_renderer = rend.PolyRenderer(self.pixels, self.tris)
+            test_renderer.render('output\iteration{}.png'.format(iteration))
             # test_renderer.variance_render('output\\v_iteration{}.png'.format(iteration))
             # self.print_average_variance()
-            # print("Iteration", (iteration + 1))
+            print("Iteration", (iteration + 1))
             for p in range(len(self.points)):
                 point = self.points[p]
                 if not point.on_edge(self.width, self.height):
@@ -202,7 +202,7 @@ class TriHandler:
         for tri in self.tris:
             tri_pix = pixels_in_tri(tri)
             if len(tri_pix) != 0:
-                output += self.variance(tri_pix)  # TODO: this never seems to be accurate
+                output += self.variance(tri_pix)
         print("Average variance:", output / len(self.tris))
 
     # would the mean actually be preferable for the purposes of adjustment?
