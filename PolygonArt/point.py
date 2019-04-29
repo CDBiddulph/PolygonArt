@@ -132,13 +132,29 @@ class Point:
     def on_edge(self, image_w, image_h):
         return self.x_locked(image_w) or self.y_locked(image_h)
 
-    # the "0.0001"s are to safeguard against floating point errors
-    # maybe there's a better way to do it, but I don't know what
     def x_locked(self, image_w):
-        return self.x >= image_w - 0.0001 or self.x <= 0.0001
+        return self.on_left_edge() or self.on_right_edge(image_w)
 
     def y_locked(self, image_h):
-            return self.y >= image_h - 0.0001 or self.y <= 0.0001
+        return self.on_top_edge() or self.on_bottom_edge(image_h)
+
+    # the "0.0001"s are to safeguard against floating point errors
+    # maybe there's a better way to do it, but I don't know what
+
+    def on_left_edge(self):
+        return self.x <= 0.0001
+
+    def on_right_edge(self, image_w):
+        return self.x >= image_w - 0.0001
+
+    def on_top_edge(self):
+            return self.y <= 0.0001
+
+    def on_bottom_edge(self, image_h):
+            return self.y >= image_h - 0.0001
+
+    def to_tuple(self):
+        return self.x, self.y
 
 
 # from the perspective of the image,
@@ -189,6 +205,8 @@ def intersection(l1p1, l1p2, l2p1, l2p2):
 
 def segment_intersection(s1p1, s1p2, s2p1, s2p2):
     intersect = intersection(s1p1, s1p2, s2p1, s2p2)
+    if intersect is None:
+        return None
 
     lower = max(min(s1p1[0], s1p2[0]), min(s2p1[0], s2p2[0]))
     upper = min(max(s1p1[0], s1p2[0]), max(s2p1[0], s2p2[0]))
@@ -199,3 +217,10 @@ def segment_intersection(s1p1, s1p2, s2p1, s2p2):
 def vector_interpolate(start_point, end_point, percent):
     return start_point[0] + (end_point[0] - start_point[0]) * percent,\
         start_point[1] + (end_point[1] - start_point[1]) * percent
+
+
+def on_same_edge(p1, p2, width, height):
+    return (p1.on_top_edge() and p2.on_top_edge()) or\
+        (p1.on_right_edge(width) and p2.on_right_edge(width)) or\
+        (p1.on_left_edge() and p2.on_left_edge()) or\
+        (p1.on_bottom_edge(height) and p2.on_bottom_edge(height))

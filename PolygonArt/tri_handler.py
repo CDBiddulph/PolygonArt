@@ -1,4 +1,4 @@
-from point import Point, slope
+from point import Point, slope, intersection, segment_intersection, on_same_edge
 import math
 import statistics as stat
 from enum import Enum
@@ -45,22 +45,89 @@ class TriHandler:
         self.add_first_tri()
 
         tri_num = 0
-        while len(self.border_edges) != 0:
+        # while len(self.border_edges) != 0:
+        for _ in range(200):
             edge = self.border_edges.pop(0)
             p1 = edge[0]
             p2 = edge[1]
 
-            longest_pb = self.longest_perpendicular_bisector(edge)
+            longest_pb = self.longest_perpendicular_bisector(p1, p2)
+            new_point = self.v_binary_search(longest_pb[0], longest_pb[1], target_v, v_allowance, min_leap, p1, p2)
+
+            self.add_tri(p1, p2, new_point)
+
+            if not on_same_edge(p1, new_point, self.width, self.height):
+                self.border_edges.append((p1, new_point))
+            if not on_same_edge(new_point, p2, self.width, self.height):
+                self.border_edges.append((new_point, p2))
 
             test_renderer = rend.PolyRenderer(self.pixels, self.tris)
             test_renderer.render('output\\output{0}.png'.format(tri_num))
             test_renderer.variance_render('output\\variance{0}.png'.format(tri_num))
             tri_num += 1
 
-    # input_edge[0] -> endpoint of this segment -> input_edge[1] will be clockwise
-    def longest_perpendicular_bisector(self, input_edge):
-        return 0, 0  # TODO
+    def v_binary_search(self, start_point, max_point, target, allowance, min_leap, p1, p2):
+        min_v = target - allowance
+        max_v = target + allowance
 
+        change_vector = max_point[0] - start_point[0], max_point[1] - start_point[1]
+
+        # not taking the square root to increase efficiency
+        min_p_leap_squared = math.pow(min_leap, 2) / (math.pow(change_vector[0], 2) + math.pow(change_vector[1], 2))
+
+        if Point(max_point[0], max_point[1]).on_edge(self.width, self.height):
+            percent = 1.0
+            p_leap = 0.5
+        else:
+            percent = 0.5
+            p_leap = 0.25
+
+        while True:
+            new_point = Point(start_point[0] + change_vector[0] * percent, start_point[1] + change_vector[1] * percent)
+            pix = pixels_in_tri([p1, p2, new_point])
+            variance = self.variance(pix, cap=max_v)
+
+            if math.pow(p_leap, 2) < min_p_leap_squared:
+                return new_point
+
+            if (variance is None or variance <= min_v) and percent < 1.0:
+                percent += p_leap
+            elif variance >= max_v and percent > 0.0:
+                percent -= p_leap
+            else:
+                return new_point
+
+            p_leap = p_leap / 2
+
+    # p1 -> endpoint -> p2 will be clockwise
+    def longest_perpendicular_bisector(self, p1, p2):
+        start_point = (p1.x + p2.x) / 2, (p1.y + p2.y) / 2
+        end_point = self.border_intersection(start_point, (-(p1.y - p2.y), (p1.x - p2.x)))
+        for be in self.border_edges:
+            intersect = segment_intersection(start_point, end_point, be[0].to_tuple(), be[1].to_tuple())
+            if intersect is not None:
+                end_point = intersect
+        return start_point, end_point
+
+    def border_intersection(self, start_point, direction):
+        end_point = start_point[0] + direction[0], start_point[1] + direction[1]
+        output = None
+
+        if direction[0] > 0:
+            output = intersection(start_point, end_point, (self.width, 0), (self.width, 1))
+        elif direction[0] < 0:
+            output = intersection(start_point, end_point, (0, 0), (0, 1))
+
+        if direction[1] > 0 and (output is None or output[1] > self.height):
+            temp = intersection(start_point, end_point, (0, self.height), (1, self.height))
+            if temp is not None:
+                output = temp
+        elif direction[1] < 0 and (output is None or output[1] < 0):
+            temp = intersection(start_point, end_point, (0, 0), (1, 0))
+            if temp is not None:
+                output = temp
+
+        return output
 
     def add_first_tri(self):
         p1 = Point(0, 0)
@@ -187,6 +254,8 @@ class TriHandler:
         return output
 
     def variance(self, pix, median=None, cap=None):
+        if len(pix) == 0:
+            return None
         if median is None:
             median = self.median_color(pix)
         squared_sum = 0

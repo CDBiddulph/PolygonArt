@@ -27,16 +27,16 @@ tri_handler = th.TriHandler(pixel_array)
 
 # target variance, variance allowance, minimum leap,
 # test shift size, final shift size, adjust iterations
-tris = tri_handler.get_smart_tris(1500, 100, 2.0, 0.2, 0.1, 1)
+tris = tri_handler.get_smart_tris(1500, 100, 1.0, 0.2, 0.1, 1)
 
 # initial side, test shift percentage, final shift percentage, adjust iterations
 # tris = tri_handler.get_rect_tris(7, 0.1, 0.05, 500)
 
 renderer = rend.PolyRenderer(pixel_array, tris)
 
-t = time.time()
-renderer.v_from_edge_render('output\\from_edge.png', (0, 10), (10, 0))
-print(time.time() - t)
+# t = time.time()
+# renderer.v_from_edge_render('output\\from_edge.png', (0, 10), (10, 0))
+# print(time.time() - t)
 # renderer.render('output\\output.png')
 # renderer.variance_render('output\\variance.png')
 # renderer.bw_render('output\\bw_output.png')
