@@ -1,4 +1,5 @@
 from point import Point, slope, intersection, segment_intersection, on_same_edge
+from border_node import BorderNode, loop_from_list, link
 import math
 import statistics as stat
 from enum import Enum
@@ -27,8 +28,6 @@ class TriHandler:
         self.points = list()
         # tris is a list of 3-lists of points
         self.tris = list()
-        # border edges is a list of 2-tuples of points
-        self.border_edges = []
 
     def get_rect_tris(self, initial_side, test_shift_size, max_final_shift, adjust_iterations):
         self.rect_initialize(initial_side)
@@ -42,29 +41,50 @@ class TriHandler:
         return list(self.tris)
 
     def smart_initialize(self, target_v, v_allowance, min_leap):
-        self.add_first_tri()
+        self.close_loop(self.first_border_node(), target_v, v_allowance, min_leap)
 
+    def close_loop(self, node, target_v, v_allowance, min_leap, file_prefix=""):
         tri_num = 0
-        # while len(self.border_edges) != 0:
-        for _ in range(200):
-            edge = self.border_edges.pop(0)
-            p1 = edge[0]
-            p2 = edge[1]
+        while node.last is not node.next:
+            n1 = node
+            n2 = node.next
+            p1 = n1.point
+            p2 = n2.point
 
-            longest_pb = self.longest_perpendicular_bisector(p1, p2)
-            new_point = self.v_binary_search(longest_pb[0], longest_pb[1], target_v, v_allowance, min_leap, p1, p2)
+            tn = n2
+            while tn is not n1:
+                print(tn.point)
+                tn = tn.next
+            print(tn.point, "\n")
 
-            self.add_tri(p1, p2, new_point)
+            if not on_same_edge(p1, p2, self.width, self.height):
+                longest_pb = self.longest_perpendicular_bisector(n1, n2)
+                new_point = self.v_binary_search(longest_pb[0], longest_pb[1], target_v, v_allowance, min_leap, p1, p2)
 
-            if not on_same_edge(p1, new_point, self.width, self.height):
-                self.border_edges.append((p1, new_point))
-            if not on_same_edge(new_point, p2, self.width, self.height):
-                self.border_edges.append((new_point, p2))
+                self.points.append(new_point)
+                add_edge(p1, new_point)
+                add_edge(new_point, p2)
+                self.add_tri(p1, p2, new_point)
 
-            test_renderer = rend.PolyRenderer(self.pixels, self.tris)
-            test_renderer.render('output\\output{0}.png'.format(tri_num))
-            test_renderer.variance_render('output\\variance{0}.png'.format(tri_num))
-            tri_num += 1
+                new_node = BorderNode(new_point)
+
+                if on_same_edge(p1, new_point, self.width, self.height):
+                    link(n1.last, new_node)
+                else:
+                    link(n1, new_node)
+
+                if on_same_edge(new_point, p2, self.width, self.height):
+                    link(new_node, n2.next)
+                else:
+                    link(new_node, n2)
+
+                test_renderer = rend.PolyRenderer(self.pixels, self.tris)
+                test_renderer.render('output\\output{0}.png'.format(file_prefix + str(tri_num)))
+                test_renderer.variance_render('output\\variance{0}.png'.format(file_prefix + str(tri_num)))
+
+                tri_num += 1
+
+            node = node.last
 
     def v_binary_search(self, start_point, max_point, target, allowance, min_leap, p1, p2):
         min_v = target - allowance
@@ -99,14 +119,20 @@ class TriHandler:
 
             p_leap = p_leap / 2
 
-    # p1 -> endpoint -> p2 will be clockwise
-    def longest_perpendicular_bisector(self, p1, p2):
+    # p1 -> endpoint -> p2 will be counterclockwise
+    def longest_perpendicular_bisector(self, n1, n2):
+        p1 = n1.point
+        p2 = n2.point
         start_point = (p1.x + p2.x) / 2, (p1.y + p2.y) / 2
-        end_point = self.border_intersection(start_point, (-(p1.y - p2.y), (p1.x - p2.x)))
-        for be in self.border_edges:
-            intersect = segment_intersection(start_point, end_point, be[0].to_tuple(), be[1].to_tuple())
+        end_point = self.border_intersection(start_point, ((p1.y - p2.y), -(p1.x - p2.x)))
+
+        node = n2
+        while node is not n1:
+            intersect = segment_intersection(start_point, end_point, node.point.to_tuple(), node.next.point.to_tuple())
             if intersect is not None:
                 end_point = intersect
+            node = node.next
+
         return start_point, end_point
 
     def border_intersection(self, start_point, direction):
@@ -129,22 +155,22 @@ class TriHandler:
 
         return output
 
-    def add_first_tri(self):
-        p1 = Point(0, 0)
+    def first_border_node(self):
+        p1 = Point(0, 10)
         p2 = Point(10, 0)
-        p3 = Point(0, 10)
+        tl = Point(0, 0)
 
         self.points.append(p1)
         self.points.append(p2)
-        self.points.append(p3)
+        self.points.append(tl)
 
         add_edge(p1, p2)
-        add_edge(p2, p3)
-        add_edge(p3, p1)
+        add_edge(p2, tl)
+        add_edge(tl, p1)
 
-        self.add_tri(p1, p2, p3)
+        self.add_tri(p1, p2, tl)
 
-        self.border_edges.append((p2, p3))
+        return loop_from_list([p1, p2, Point(self.width, 0), Point(self.width, self.height), Point(0, self.height)])
 
     def rect_initialize(self, side):
         true_sx = self.width / (self.width // side)
