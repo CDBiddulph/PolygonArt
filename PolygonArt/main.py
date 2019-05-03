@@ -30,7 +30,7 @@ tri_handler = th.TriHandler(pixel_array)
 tris = tri_handler.get_smart_tris(1500, 100, 1.0, 0.2, 0.1, 1)
 
 # initial side, test shift percentage, final shift percentage, adjust iterations
-# tris = tri_handler.get_rect_tris(7, 0.1, 0.05, 500)
+# tris = tri_handler.get_rect_tris(15, 0.1, 0.05, 500)
 
 renderer = rend.PolyRenderer(pixel_array, tris)
 

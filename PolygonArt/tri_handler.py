@@ -28,6 +28,8 @@ class TriHandler:
         self.points = list()
         # tris is a list of 3-lists of points
         self.tris = list()
+        # tri_num is the index of the last triangle created, for debugging
+        self.tri_num = 0
 
     def get_rect_tris(self, initial_side, test_shift_size, max_final_shift, adjust_iterations):
         self.rect_initialize(initial_side)
@@ -43,21 +45,16 @@ class TriHandler:
     def smart_initialize(self, target_v, v_allowance, min_leap):
         self.close_loop(self.first_border_node(), target_v, v_allowance, min_leap)
 
-    def close_loop(self, node, target_v, v_allowance, min_leap, file_prefix=""):
-        tri_num = 0
-        while node.last is not node.next:
+    def close_loop(self, node, target_v, v_allowance, min_leap):
+        if node.next is not node.last:
             n1 = node
             n2 = node.next
             p1 = n1.point
             p2 = n2.point
 
-            tn = n2
-            while tn is not n1:
-                print(tn.point)
-                tn = tn.next
-            print(tn.point, "\n")
-
-            if not on_same_edge(p1, p2, self.width, self.height):
+            if on_same_edge(p1, p2, self.width, self.height):
+                self.close_loop(node.next, target_v, v_allowance, min_leap)
+            else:
                 longest_pb = self.longest_perpendicular_bisector(n1, n2)
                 new_point = self.v_binary_search(longest_pb[0], longest_pb[1], target_v, v_allowance, min_leap, p1, p2)
 
@@ -79,12 +76,30 @@ class TriHandler:
                     link(new_node, n2)
 
                 test_renderer = rend.PolyRenderer(self.pixels, self.tris)
-                test_renderer.render('output\\output{0}.png'.format(file_prefix + str(tri_num)))
-                test_renderer.variance_render('output\\variance{0}.png'.format(file_prefix + str(tri_num)))
+                test_renderer.render('output\\output{0}.png'.format(self.tri_num))
+                test_renderer.variance_render('output\\variance{0}.png'.format(self.tri_num))
 
-                tri_num += 1
+                self.tri_num += 1
 
-            node = node.last
+                self.search_for_bridges(new_node, target_v, v_allowance, min_leap)
+
+    def search_for_bridges(self, central_node, target_v, v_allowance, min_leap):
+        valid_edges = self.find_possible_bridges(central_node)
+
+        max_variance = target_v + v_allowance
+        for edge in valid_edges:
+            pix = pixels_in_tri([central_node.point, edge[0].point, edge[1].point])
+            # if self.variance(pix, cap=max_variance) < max_variance:
+
+
+        # self.close_loop(central_node, target_v, v_allowance, min_leap)
+
+    def find_possible_bridges(self, central_node):
+        n1 = central_node.next
+        n2 = n1.next
+        while n2.next is not central_node:
+            n1 = n1.next
+            n2 = n2.next
 
     def v_binary_search(self, start_point, max_point, target, allowance, min_leap, p1, p2):
         min_v = target - allowance
