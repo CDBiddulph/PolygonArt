@@ -8,7 +8,7 @@ class PolyRenderer:
     def __init__(self, i_pix, tris):
         self.i_pix = i_pix  # original pixels
         self.tris = tris
-        self.o_pix = [[0 for _ in i_pix[0]] for _ in i_pix]  # final pixels - initialize as all black
+        self.o_pix = [[240 for _ in i_pix[0]] for _ in i_pix]  # final pixels - initialize as all black
 
     def render(self, path):
         tri_handler = th.TriHandler(self.i_pix)
@@ -42,7 +42,7 @@ class PolyRenderer:
                 self.paint_pixels(tri_pix, hue)
         self.save_image(path)
 
-    v_from_edge_range = 5000
+    v_from_edge_range = 20000
 
     def v_from_edge_render(self, path, p1, p2):
         tri_handler = th.TriHandler(self.i_pix)

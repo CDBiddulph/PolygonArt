@@ -3,7 +3,7 @@ import tri_handler as th
 import png
 import time
 
-reader = png.Reader("input\\small_parrot.png")
+reader = png.Reader("input\\circle.png")
 
 img = reader.read()
 width = img[0]
@@ -27,10 +27,10 @@ tri_handler = th.TriHandler(pixel_array)
 
 # target variance, variance allowance, minimum leap,
 # test shift size, final shift size, adjust iterations
-tris = tri_handler.get_smart_tris(1500, 100, 1.0, 0.2, 0.1, 1)
+tris = tri_handler.get_smart_tris(50, 50, 5.0, 0.2, 0.1, 200)
 
 # initial side, test shift percentage, final shift percentage, adjust iterations
-# tris = tri_handler.get_rect_tris(15, 0.1, 0.05, 500)
+# tris = tri_handler.get_rect_tris(15, 0.1, 0.05, 0)
 
 renderer = rend.PolyRenderer(pixel_array, tris)
 

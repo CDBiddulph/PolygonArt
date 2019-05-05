@@ -21,7 +21,7 @@ class Point:
         return self.x == other.x and self.y == other.y
 
     def __str__(self):
-        return "({}, {})".format(self.x, self.y)
+        return "({}, {})".format('%.3f' % self.x, '%.3f' % self.y)
 
     # hopefully, this method will become obsolete later on,
     # when we can just insert new points in the correct position.
@@ -129,6 +129,20 @@ class Point:
             (self.x, self.y), closest_intersect, shift_percent
         )
 
+    def dist_squared_from_line(self, p1, p2):
+        numerator = pow((p2.y - p1.y) * self.x - (p2.x - p1.x) * self.y + p2.x * p1.y - p2.y * p1.x, 2)
+        denominator = pow(p2.y - p1.y, 2) + pow(p2.x - p1.x, 2)
+        return numerator / denominator
+
+    def in_stripe(self, b, c):
+        bcx = c.x - b.x
+        bcy = c.y - b.y
+        stripe_width_squared = bcx * bcx + bcy * bcy
+        bax = self.x - b.x
+        bay = self.y - b.y
+        dot_product = bax * bcx + bay * bcy
+        return 0 <= dot_product <= stripe_width_squared
+
     def on_edge(self, image_w, image_h):
         return self.x_locked(image_w) or self.y_locked(image_h)
 
@@ -185,6 +199,15 @@ def horizontal_crossing(p1, p2, y):
 
 # basic algorithm found online, uses determinants
 def intersection(l1p1, l1p2, l2p1, l2p2):
+    if isinstance(l1p1, Point):
+        l1p1 = l1p1.to_tuple()
+    if isinstance(l1p2, Point):
+        l1p2 = l1p2.to_tuple()
+    if isinstance(l2p1, Point):
+        l2p1 = l2p1.to_tuple()
+    if isinstance(l2p2, Point):
+        l2p2 = l2p2.to_tuple()
+
     a1 = l1p2[1] - l1p1[1]
     b1 = l1p1[0] - l1p2[0]
     c1 = a1 * l1p1[0] + b1 * l1p1[1]
@@ -224,3 +247,26 @@ def on_same_edge(p1, p2, width, height):
         (p1.on_right_edge(width) and p2.on_right_edge(width)) or\
         (p1.on_left_edge() and p2.on_left_edge()) or\
         (p1.on_bottom_edge(height) and p2.on_bottom_edge(height))
+
+
+def orientation_value(p1, p2, p3):
+    if isinstance(p1, Point):
+        p1 = p1.to_tuple()
+    if isinstance(p2, Point):
+        p2 = p2.to_tuple()
+    if isinstance(p3, Point):
+        p3 = p3.to_tuple()
+    return (p2[1] - p1[1]) * (p3[0] - p2[0]) - (p2[0] - p1[0]) * (p3[1] - p2[1])
+
+
+# returns true if going from p1 to p2 to p3 back to p1 is a CW loop, false if CCW, None if colinear
+def is_clockwise(p1, p2, p3):
+    return orientation_value(p1, p2, p3) < 0
+
+
+# returns true if going from p1 to p2 to p3 back to p1 is a CW loop, false if CCW, None if colinear
+def is_counterclockwise(p1, p2, p3):
+    return orientation_value(p1, p2, p3) > 0
+
+
+# print(is_clockwise(Point(134.814, 140.710), Point(176.784, 173.303), Point(106.387, 116.590)))
