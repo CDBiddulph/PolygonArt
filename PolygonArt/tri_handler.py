@@ -52,11 +52,11 @@ class TriHandler:
         if node is node.next.next.next:
             self.add_tri(node.point, node.next.point, node.next.next.point)
             self.test_render_new_triangle()
-        elif node is not node.next and \
-                node is not node.next.next:
+        elif node is not node.next.next and \
+                node is not node.next:
 
-            n1 = node
-            n2 = node.next
+            n1 = node.n1_of_largest_edge(self.width, self.height)
+            n2 = n1.next
             p1 = n1.point
             p2 = n2.point
 

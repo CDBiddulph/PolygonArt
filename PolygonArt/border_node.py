@@ -1,4 +1,4 @@
-from point import is_clockwise, is_counterclockwise
+from point import is_clockwise, is_counterclockwise, on_same_edge, distance_squared
 
 
 class BorderNode:
@@ -53,6 +53,23 @@ class BorderNode:
                 not is_counterclockwise(central_point, self.last.point, output[-1][1].point) and \
                 self.last.point is not output[-1][1].point:
             output.pop(-1)
+
+        return output
+
+    def n1_of_largest_edge(self, width, height):
+        max_l_squared = 0
+        output = self
+
+        n1 = self
+        n2 = self.next
+        while n2 is not self:
+            if not on_same_edge(n1.point, n2.point, width, height):
+                l_squared = distance_squared(n1.point, n2.point)
+                if l_squared > max_l_squared:
+                    max_l_squared = l_squared
+                    output = n1
+            n1 = n1.next
+            n2 = n2.next
 
         return output
 
