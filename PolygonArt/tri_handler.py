@@ -46,16 +46,18 @@ class TriHandler:
         return list(self.tris)
 
     def smart_initialize(self, target_v, v_allowance, min_leap):
-        self.close_loop(self.first_border_node(), target_v, v_allowance, min_leap)
+        self.border_loops.append(self.first_border_node())
+        while len(self.border_loops) != 0:
+            self.step(self.border_loops.pop(0), target_v, v_allowance, min_leap)
 
-    def close_loop(self, node, target_v, v_allowance, min_leap):
+    def step(self, node, target_v, v_allowance, min_leap):
         if node is node.next.next.next:
             self.add_tri(node.point, node.next.point, node.next.next.point)
             self.test_render_new_triangle()
         elif node is not node.next.next and \
                 node is not node.next:
 
-            n1 = node  # node.n1_of_largest_edge(self.width, self.height)
+            n1 = node.n1_of_largest_edge(self.width, self.height)
             n2 = n1.next
             p1 = n1.point
             p2 = n2.point
@@ -94,7 +96,7 @@ class TriHandler:
     def test_render_new_triangle(self):
         print(self.tri_num)
 
-        if self.tri_num % 10 == 0:
+        if self.tri_num > 375:  # self.tri_num % 10 == 0:
             test_renderer = rend.PolyRenderer(self.pixels, self.tris)
             test_renderer.render('output\\output{0}.png'.format(self.tri_num))
             test_renderer.variance_render('output\\variance{0}.png'.format(self.tri_num))
@@ -130,10 +132,10 @@ class TriHandler:
 
                 self.test_render_new_triangle()
 
-                self.close_loop(new_node.last, target_v, v_allowance, min_leap)
+                self.border_loops.append(new_node.last)
 
         link(central_node, next_next)
-        self.close_loop(central_node.last, target_v, v_allowance, min_leap)
+        self.border_loops.append(central_node.last)
 
     def v_binary_search(self, start_point, max_point, target, allowance, min_leap, p1, p2):
         min_v = target - allowance

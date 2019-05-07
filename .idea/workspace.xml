@@ -5,8 +5,168 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/PolygonArt/border_node.py" beforeDir="false" afterPath="$PROJECT_DIR$/PolygonArt/border_node.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/PolygonArt/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/PolygonArt/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/point.py" beforeDir="false" afterPath="$PROJECT_DIR$/PolygonArt/point.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/poly_renderer.py" beforeDir="false" afterPath="$PROJECT_DIR$/PolygonArt/poly_renderer.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/output/output0.png" beforeDir="false" afterPath="$PROJECT_DIR$/PolygonArt/output/output0.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/output/output10.png" beforeDir="false" afterPath="$PROJECT_DIR$/PolygonArt/output/output10.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/output/output100.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/output/output110.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/output/output120.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/output/output130.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/output/output140.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/output/output150.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/output/output160.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/output/output170.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/output/output180.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/output/output190.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/output/output20.png" beforeDir="false" afterPath="$PROJECT_DIR$/PolygonArt/output/output20.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/output/output200.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/output/output210.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/output/output220.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/output/output230.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/output/output240.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/output/output250.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/output/output260.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/output/output270.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/output/output280.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/output/output290.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/output/output30.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/output/output300.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/output/output310.png" beforeDir="false" afterPath="$PROJECT_DIR$/PolygonArt/output/output310.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/output/output320.png" beforeDir="false" afterPath="$PROJECT_DIR$/PolygonArt/output/output320.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/output/output330.png" beforeDir="false" afterPath="$PROJECT_DIR$/PolygonArt/output/output330.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/output/output340.png" beforeDir="false" afterPath="$PROJECT_DIR$/PolygonArt/output/output340.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/output/output350.png" beforeDir="false" afterPath="$PROJECT_DIR$/PolygonArt/output/output350.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/output/output360.png" beforeDir="false" afterPath="$PROJECT_DIR$/PolygonArt/output/output360.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/output/output370.png" beforeDir="false" afterPath="$PROJECT_DIR$/PolygonArt/output/output370.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/output/output380.png" beforeDir="false" afterPath="$PROJECT_DIR$/PolygonArt/output/output380.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/output/output390.png" beforeDir="false" afterPath="$PROJECT_DIR$/PolygonArt/output/output390.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/output/output40.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/output/output400.png" beforeDir="false" afterPath="$PROJECT_DIR$/PolygonArt/output/output400.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/output/output410.png" beforeDir="false" afterPath="$PROJECT_DIR$/PolygonArt/output/output410.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/output/output420.png" beforeDir="false" afterPath="$PROJECT_DIR$/PolygonArt/output/output420.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/output/output430.png" beforeDir="false" afterPath="$PROJECT_DIR$/PolygonArt/output/output430.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/output/output440.png" beforeDir="false" afterPath="$PROJECT_DIR$/PolygonArt/output/output440.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/output/output450.png" beforeDir="false" afterPath="$PROJECT_DIR$/PolygonArt/output/output450.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/output/output460.png" beforeDir="false" afterPath="$PROJECT_DIR$/PolygonArt/output/output460.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/output/output470.png" beforeDir="false" afterPath="$PROJECT_DIR$/PolygonArt/output/output470.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/output/output480.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/output/output490.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/output/output50.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/output/output500.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/output/output510.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/output/output520.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/output/output530.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/output/output540.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/output/output550.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/output/output560.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/output/output570.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/output/output580.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/output/output590.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/output/output60.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/output/output600.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/output/output610.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/output/output620.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/output/output630.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/output/output640.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/output/output650.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/output/output660.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/output/output670.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/output/output680.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/output/output690.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/output/output70.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/output/output700.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/output/output710.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/output/output720.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/output/output730.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/output/output740.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/output/output750.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/output/output760.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/output/output770.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/output/output780.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/output/output790.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/output/output80.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/output/output800.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/output/output90.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/output/variance0.png" beforeDir="false" afterPath="$PROJECT_DIR$/PolygonArt/output/variance0.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/output/variance10.png" beforeDir="false" afterPath="$PROJECT_DIR$/PolygonArt/output/variance10.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/output/variance100.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/output/variance110.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/output/variance120.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/output/variance130.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/output/variance140.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/output/variance150.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/output/variance160.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/output/variance170.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/output/variance180.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/output/variance190.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/output/variance20.png" beforeDir="false" afterPath="$PROJECT_DIR$/PolygonArt/output/variance20.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/output/variance200.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/output/variance210.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/output/variance220.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/output/variance230.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/output/variance240.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/output/variance250.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/output/variance260.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/output/variance270.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/output/variance280.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/output/variance290.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/output/variance30.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/output/variance300.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/output/variance310.png" beforeDir="false" afterPath="$PROJECT_DIR$/PolygonArt/output/variance310.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/output/variance320.png" beforeDir="false" afterPath="$PROJECT_DIR$/PolygonArt/output/variance320.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/output/variance330.png" beforeDir="false" afterPath="$PROJECT_DIR$/PolygonArt/output/variance330.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/output/variance340.png" beforeDir="false" afterPath="$PROJECT_DIR$/PolygonArt/output/variance340.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/output/variance350.png" beforeDir="false" afterPath="$PROJECT_DIR$/PolygonArt/output/variance350.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/output/variance360.png" beforeDir="false" afterPath="$PROJECT_DIR$/PolygonArt/output/variance360.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/output/variance370.png" beforeDir="false" afterPath="$PROJECT_DIR$/PolygonArt/output/variance370.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/output/variance380.png" beforeDir="false" afterPath="$PROJECT_DIR$/PolygonArt/output/variance380.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/output/variance390.png" beforeDir="false" afterPath="$PROJECT_DIR$/PolygonArt/output/variance390.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/output/variance40.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/output/variance400.png" beforeDir="false" afterPath="$PROJECT_DIR$/PolygonArt/output/variance400.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/output/variance410.png" beforeDir="false" afterPath="$PROJECT_DIR$/PolygonArt/output/variance410.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/output/variance420.png" beforeDir="false" afterPath="$PROJECT_DIR$/PolygonArt/output/variance420.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/output/variance430.png" beforeDir="false" afterPath="$PROJECT_DIR$/PolygonArt/output/variance430.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/output/variance440.png" beforeDir="false" afterPath="$PROJECT_DIR$/PolygonArt/output/variance440.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/output/variance450.png" beforeDir="false" afterPath="$PROJECT_DIR$/PolygonArt/output/variance450.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/output/variance460.png" beforeDir="false" afterPath="$PROJECT_DIR$/PolygonArt/output/variance460.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/output/variance470.png" beforeDir="false" afterPath="$PROJECT_DIR$/PolygonArt/output/variance470.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/output/variance480.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/output/variance490.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/output/variance50.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/output/variance500.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/output/variance510.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/output/variance520.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/output/variance530.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/output/variance540.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/output/variance550.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/output/variance560.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/output/variance570.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/output/variance580.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/output/variance590.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/output/variance60.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/output/variance600.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/output/variance610.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/output/variance620.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/output/variance630.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/output/variance640.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/output/variance650.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/output/variance660.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/output/variance670.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/output/variance680.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/output/variance690.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/output/variance70.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/output/variance700.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/output/variance710.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/output/variance720.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/output/variance730.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/output/variance740.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/output/variance750.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/output/variance760.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/output/variance770.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/output/variance780.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/output/variance790.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/output/variance80.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/output/variance800.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/output/variance90.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/PolygonArt/tri_handler.py" beforeDir="false" afterPath="$PROJECT_DIR$/PolygonArt/tri_handler.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -20,8 +180,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/PolygonArt/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="31" column="29" selection-start-line="31" selection-start-column="29" selection-end-line="31" selection-end-column="29" />
+            <state relative-caret-position="-136">
+              <caret line="5" column="32" selection-start-line="5" selection-start-column="32" selection-end-line="5" selection-end-column="32" />
               <folding>
                 <element signature="e#0#28#0" expanded="true" />
               </folding>
@@ -32,8 +192,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/PolygonArt/poly_renderer.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="497">
-              <caret line="44" column="31" selection-start-line="44" selection-start-column="31" selection-end-line="44" selection-end-column="31" />
+            <state relative-caret-position="238">
+              <caret line="14" column="29" selection-start-line="14" selection-start-column="29" selection-end-line="14" selection-end-column="29" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
               </folding>
@@ -44,8 +204,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/PolygonArt/tri_handler.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="233">
-              <caret line="369" column="37" selection-start-line="369" selection-start-column="37" selection-end-line="369" selection-end-column="37" />
+            <state relative-caret-position="182">
+              <caret line="98" column="29" selection-start-line="98" selection-start-column="29" selection-end-line="98" selection-end-column="29" />
               <folding>
                 <element signature="e#0#80#0" expanded="true" />
               </folding>
@@ -56,8 +216,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/PolygonArt/border_node.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="123">
-              <caret line="61" selection-start-line="61" selection-end-line="61" />
+            <state relative-caret-position="204">
+              <caret line="114" column="48" selection-start-line="114" selection-start-column="48" selection-end-line="114" selection-end-column="48" />
             </state>
           </provider>
         </entry>
@@ -106,9 +266,10 @@
       <find>add_tri</find>
       <find>close</find>
       <find>first</find>
-      <find>test_re</find>
       <find>variance</find>
       <find>e_variance</find>
+      <find>test_re</find>
+      <find>0.00</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -126,8 +287,8 @@
         <option value="$PROJECT_DIR$/main.py" />
         <option value="$PROJECT_DIR$/PolygonArt/point.py" />
         <option value="$PROJECT_DIR$/PolygonArt/poly_renderer.py" />
-        <option value="$PROJECT_DIR$/PolygonArt/border_node.py" />
         <option value="$PROJECT_DIR$/PolygonArt/main.py" />
+        <option value="$PROJECT_DIR$/PolygonArt/border_node.py" />
         <option value="$PROJECT_DIR$/PolygonArt/tri_handler.py" />
       </list>
     </option>
@@ -303,27 +464,27 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/PolygonArt/border_node.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="123">
-          <caret line="61" selection-start-line="61" selection-end-line="61" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/PolygonArt/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="31" column="29" selection-start-line="31" selection-start-column="29" selection-end-line="31" selection-end-column="29" />
+        <state relative-caret-position="-136">
+          <caret line="5" column="32" selection-start-line="5" selection-start-column="32" selection-end-line="5" selection-end-column="32" />
           <folding>
             <element signature="e#0#28#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/PolygonArt/border_node.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="114" column="48" selection-start-line="114" selection-start-column="48" selection-end-line="114" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/PolygonArt/poly_renderer.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="497">
-          <caret line="44" column="31" selection-start-line="44" selection-start-column="31" selection-end-line="44" selection-end-column="31" />
+        <state relative-caret-position="238">
+          <caret line="14" column="29" selection-start-line="14" selection-start-column="29" selection-end-line="14" selection-end-column="29" />
           <folding>
             <element signature="e#0#10#0" expanded="true" />
           </folding>
@@ -332,8 +493,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/PolygonArt/tri_handler.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="233">
-          <caret line="369" column="37" selection-start-line="369" selection-start-column="37" selection-end-line="369" selection-end-column="37" />
+        <state relative-caret-position="182">
+          <caret line="98" column="29" selection-start-line="98" selection-start-column="29" selection-end-line="98" selection-end-column="29" />
           <folding>
             <element signature="e#0#80#0" expanded="true" />
           </folding>
