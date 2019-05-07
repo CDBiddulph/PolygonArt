@@ -31,8 +31,8 @@ class TriHandler:
         self.tris = list()
         # tri_num is the index of the last triangle created, for debugging
         self.tri_num = 0
-        # edge_heap is a max heap of 2-tuples of border nodes based on squared length
-        # self.edge_heap = heapq()
+        # border_loops is a list of nodes representing each individual loop of border nodes
+        self.border_loops = list()
 
     def get_rect_tris(self, initial_side, test_shift_size, max_final_shift, adjust_iterations):
         self.rect_initialize(initial_side)
@@ -55,44 +55,49 @@ class TriHandler:
         elif node is not node.next.next and \
                 node is not node.next:
 
-            n1 = node.n1_of_largest_edge(self.width, self.height)
+            n1 = node  # node.n1_of_largest_edge(self.width, self.height)
             n2 = n1.next
             p1 = n1.point
             p2 = n2.point
 
-            if on_same_edge(p1, p2, self.width, self.height):
-                self.close_loop(node.next, target_v, v_allowance, min_leap)
+            longest_pb = self.longest_perpendicular_bisector(n1, n2)
+            new_point = self.v_binary_search(longest_pb[0], longest_pb[1], target_v, v_allowance, min_leap, p1, p2)
+
+            self.points.append(new_point)
+            add_edge(p1, new_point)
+            add_edge(new_point, p2)
+            self.add_tri(p1, p2, new_point)
+
+            self.test_render_new_triangle()
+
+            if new_point.on_edge(self.width, self.height):
+                left_edge_node, right_edge_node = n1.adjacent_edge_nodes(new_point, self.width, self.height)
+
+                left_new_node = BorderNode(new_point)
+                link(left_edge_node, left_new_node)
+                link(left_new_node, n2)
+
+                right_new_node = BorderNode(new_point)
+                link(n1, right_new_node)
+                link(right_new_node, right_edge_node)
+
+                self.search_for_bridges(left_new_node, target_v, v_allowance, min_leap)
+                self.search_for_bridges(right_new_node, target_v, v_allowance, min_leap)
+
             else:
-                longest_pb = self.longest_perpendicular_bisector(n1, n2)
-                new_point = self.v_binary_search(longest_pb[0], longest_pb[1], target_v, v_allowance, min_leap, p1, p2)
-
-                self.points.append(new_point)
-                add_edge(p1, new_point)
-                add_edge(new_point, p2)
-                self.add_tri(p1, p2, new_point)
-
                 new_node = BorderNode(new_point)
-
-                if on_same_edge(p1, new_point, self.width, self.height):
-                    link(n1.last, new_node)
-                else:
-                    link(n1, new_node)
-
-                if on_same_edge(new_point, p2, self.width, self.height):
-                    link(new_node, n2.next)
-                else:
-                    link(new_node, n2)
-
-                self.test_render_new_triangle()
+                link(n1, new_node)
+                link(new_node, n2)
 
                 self.search_for_bridges(new_node, target_v, v_allowance, min_leap)
 
     def test_render_new_triangle(self):
         print(self.tri_num)
 
-        test_renderer = rend.PolyRenderer(self.pixels, self.tris)
-        test_renderer.render('output\\output{0}.png'.format(self.tri_num))
-        test_renderer.variance_render('output\\variance{0}.png'.format(self.tri_num))
+        if self.tri_num % 10 == 0:
+            test_renderer = rend.PolyRenderer(self.pixels, self.tris)
+            test_renderer.render('output\\output{0}.png'.format(self.tri_num))
+            test_renderer.variance_render('output\\variance{0}.png'.format(self.tri_num))
 
         self.tri_num += 1
 
@@ -215,8 +220,8 @@ class TriHandler:
         return output
 
     def first_border_node(self):
-        p1 = Point(0, 40)
-        p2 = Point(40, 0)
+        p1 = Point(0, 20)
+        p2 = Point(20, 0)
         tl = Point(0, 0)
 
         self.points.append(p1)
@@ -282,7 +287,7 @@ class TriHandler:
             test_renderer = rend.PolyRenderer(self.pixels, self.tris)
             test_renderer.render('output\iteration{}.png'.format(iteration))
             # test_renderer.variance_render('output\\v_iteration{}.png'.format(iteration))
-            # self.print_average_variance()
+            # self.print_net_variance()
             print("Iteration", (iteration + 1))
             for p in range(len(self.points)):
                 point = self.points[p]
@@ -354,15 +359,15 @@ class TriHandler:
                 squared_sum += math.pow(color[2] - median[2], 2)
                 if cap is not None and squared_sum > ss_cap:
                     return cap
-        return squared_sum / len(pix)
+        return squared_sum
 
-    def print_average_variance(self):
+    def print_net_variance(self):
         output = 0
         for tri in self.tris:
             tri_pix = pixels_in_tri(tri)
             if len(tri_pix) != 0:
                 output += self.variance(tri_pix)
-        print("Average variance:", output / len(self.tris))
+        print("Net variance:", output)
 
     # would the mean actually be preferable for the purposes of adjustment?
     def median_color(self, pix, sample_size=math.inf):

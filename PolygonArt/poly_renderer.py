@@ -42,7 +42,7 @@ class PolyRenderer:
                 self.paint_pixels(tri_pix, hue)
         self.save_image(path)
 
-    v_from_edge_range = 20000
+    v_from_edge_range = 1000000
 
     def v_from_edge_render(self, path, p1, p2):
         tri_handler = th.TriHandler(self.i_pix)

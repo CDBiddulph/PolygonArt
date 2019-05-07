@@ -73,6 +73,47 @@ class BorderNode:
 
         return output
 
+    def adjacent_edge_nodes(self, target, width, height):
+        if target.x_locked(width):
+            match_x = True
+        elif target.y_locked(height):
+            match_x = False
+        else:
+            print("Error: {0} is not on an edge".format(target))
+            return None
+
+        search1 = self
+        search2 = self
+        starting = True
+
+        while search1 is not search2 or starting:
+            starting = False
+
+            if match_x:
+                if round(target.x, 5) == round(search1.point.x, 5) == round(search1.next.point.x, 5) and \
+                        (search1.point.y < target.y < search1.next.point.y or
+                         search1.point.y > target.y > search1.next.point.y):
+                    return search1, search1.next
+                if round(target.x, 5) == round(search2.point.x, 5) == round(search2.last.point.x, 5) and \
+                        (search2.point.y < target.y < search2.last.point.y or
+                         search2.point.y > target.y > search2.last.point.y):
+                    return search2.last, search2
+            else:
+                if round(target.y, 5) == round(search1.point.y, 5) == round(search1.next.point.y, 5) and \
+                        (search1.point.x < target.x < search1.next.point.x or
+                         search1.point.x > target.x > search1.next.point.x):
+                    return search1, search1.next
+                if round(target.y, 5) == round(search2.point.y, 5) == round(search2.last.point.y, 5) and \
+                        (search2.point.x < target.x < search2.last.point.x or
+                         search2.point.x > target.x > search2.last.point.x):
+                    return search2.last, search2
+
+            search1 = search1.next
+            search2 = search2.last
+
+        print("Error: no edge in loop matching", target)
+        return None
+
 
 def loop_from_list(point_list):
     node_list = []

@@ -156,16 +156,16 @@ class Point:
     # maybe there's a better way to do it, but I don't know what
 
     def on_left_edge(self):
-        return self.x <= 0.0001
+        return round(self.x, 5) <= 0
 
     def on_right_edge(self, image_w):
-        return self.x >= image_w - 0.0001
+        return round(self.x, 5) >= image_w
 
     def on_top_edge(self):
-            return self.y <= 0.0001
+            return round(self.y, 5) <= 0
 
     def on_bottom_edge(self, image_h):
-            return self.y >= image_h - 0.0001
+            return round(self.y, 5) >= image_h
 
     def to_tuple(self):
         return self.x, self.y
