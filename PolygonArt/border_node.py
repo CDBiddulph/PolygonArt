@@ -17,40 +17,32 @@ class BorderNode:
     def find_possible_bridges(self):
         n1 = self.next
         n2 = n1.next
-        central_point = self.point
+        mcw = n1.point
         output = list()
+
         while n2 is not self:
+
             p1 = n1.point
             p2 = n2.point
 
-            if is_clockwise(central_point, p1, p2):
-                ready = False  # ready to move on to the next edge
-                while not ready:
-                    if len(output) == 0:
-                        if is_clockwise(central_point, self.next.point, p1) or \
-                                self.next.point is p1:
-                            output.append((n1, n2))
-                        ready = True
-                    else:
-                        # lvp (last valid point) is the last point of the most recently-added valid edge
-                        # take note that lvp could be the same as p1
-                        lvp = output[-1][1].point
-                        if is_counterclockwise(central_point, lvp, p1):
-                            # should be impossible for p1, p2, and lvp to be collinear here?
-                            if is_counterclockwise(p1, p2, lvp):  # this edge is in front of the edge of lvp
-                                output.pop(-1)
-                                # should be the only situation in which ready is False
-                            else:
-                                ready = True
-                        else:  # if colinear or clockwise
-                            output.append((n1, n2))
-                            ready = True
+            if is_clockwise(self.point, mcw, p1):
+                mcw = p1
+
+            if not is_counterclockwise(self.point, p1, p2):  # edge is oriented towards self
+                if is_counterclockwise(self.point, mcw, p1):  # mcw's edge "blocks" p1's edge, or vice versa
+                    if is_counterclockwise(p1, p2, mcw):  # p1's edge blocks mcw's edge
+                        while len(output) != 0 and is_clockwise(self.point, p1, output[-1][1].point):
+                            output.pop(-1)  # may not call at all
+                        output.append((n1, n2))
+                    # else: do nothing; do not append n1 and n2
+                else:  # if colinear (meaning p1 and mcw are probably the same point) or clockwise
+                    output.append((n1, n2))
 
             n1 = n1.next
             n2 = n2.next
 
         while len(output) != 0 and \
-                not is_counterclockwise(central_point, self.last.point, output[-1][1].point) and \
+                not is_counterclockwise(self.point, self.last.point, output[-1][1].point) and \
                 self.last.point is not output[-1][1].point:
             output.pop(-1)
 

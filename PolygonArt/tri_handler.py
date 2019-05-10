@@ -4,7 +4,6 @@ import math
 import statistics as stat
 from enum import Enum
 import random
-import heapq
 
 import poly_renderer as rend
 
@@ -46,7 +45,7 @@ class TriHandler:
         return list(self.tris)
 
     def smart_initialize(self, target_v, v_allowance, min_leap):
-        self.border_loops.append(self.first_border_node())
+        self.border_loops.append(self.first_border_node(target_v, v_allowance, min_leap))
         while len(self.border_loops) != 0:
             self.step(self.border_loops.pop(0), target_v, v_allowance, min_leap)
 
@@ -94,9 +93,10 @@ class TriHandler:
                 self.search_for_bridges(new_node, target_v, v_allowance, min_leap)
 
     def test_render_new_triangle(self):
+
         print(self.tri_num)
 
-        if self.tri_num > 375:  # self.tri_num % 10 == 0:
+        if self.tri_num % 500 == 0:
             test_renderer = rend.PolyRenderer(self.pixels, self.tris)
             test_renderer.render('output\\output{0}.png'.format(self.tri_num))
             test_renderer.variance_render('output\\variance{0}.png'.format(self.tri_num))
@@ -221,10 +221,31 @@ class TriHandler:
 
         return output
 
-    def first_border_node(self):
-        p1 = Point(0, 20)
-        p2 = Point(20, 0)
+    def first_border_node(self, target_v, v_allowance, min_leap):
+        side = min(self.width, self.height) / 2
+        leap = side / 2
         tl = Point(0, 0)
+        min_v = target_v - v_allowance
+        max_v = target_v + v_allowance
+
+        while True:
+            variance = self.variance(pixels_in_tri([tl, Point(0, side), Point(side, 0)]), cap=max_v)
+
+            if leap < min_leap:
+                break
+
+            if (variance is None or variance <= min_v) and side < min(self.width, self.height):
+                side += leap
+            elif variance >= max_v and side > 0.0:
+                side -= leap
+            else:
+                break
+
+            leap = leap / 2
+
+        # just going to divide by two to avoid making a big, flat edge
+        p1 = Point(0, side / 2)
+        p2 = Point(side / 2, 0)
 
         self.points.append(p1)
         self.points.append(p2)
@@ -235,6 +256,8 @@ class TriHandler:
         add_edge(tl, p1)
 
         self.add_tri(p1, p2, tl)
+
+        self.test_render_new_triangle()
 
         return loop_from_list([p1, p2, Point(self.width, 0), Point(self.width, self.height), Point(0, self.height)])
 
@@ -351,15 +374,13 @@ class TriHandler:
         if median is None:
             median = self.median_color(pix)
         squared_sum = 0
-        if cap is not None:
-            ss_cap = cap * len(pix)
         for p in pix:
             color = self.get_color(p)
             if color:
                 squared_sum += math.pow(color[0] - median[0], 2)
                 squared_sum += math.pow(color[1] - median[1], 2)
                 squared_sum += math.pow(color[2] - median[2], 2)
-                if cap is not None and squared_sum > ss_cap:
+                if cap is not None and squared_sum > cap:
                     return cap
         return squared_sum
 
