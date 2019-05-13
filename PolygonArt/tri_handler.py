@@ -18,7 +18,7 @@ class Direction(Enum):
 
 class TriHandler:
 
-    def __init__(self, pixels):
+    def __init__(self, pixels, time_h):
         # pixels is a list with dimensions [height][width*3]
         # the second dimension stores the RGB for each pixel in the row
         self.pixels = pixels
@@ -33,23 +33,27 @@ class TriHandler:
         # border_loops is a list of nodes representing each individual loop of border nodes
         self.border_loops = list()
 
+        # debugs for efficiency
+        self.time_h = time_h
+
     def get_rect_tris(self, initial_side, test_shift_size, max_final_shift, adjust_iterations):
         self.rect_initialize(initial_side)
         self.adjust_points(test_shift_size, max_final_shift, adjust_iterations)
         return list(self.tris)
 
-    def get_smart_tris(self, target_v, v_allowance, min_leap,
+    def get_smart_tris(self, target_v, v_allowance, min_leap, max_leap,
                        test_shift_size, final_shift_size, adjust_iterations):
-        self.smart_initialize(target_v, v_allowance, min_leap)
+        self.smart_initialize(target_v, v_allowance, min_leap, max_leap)
         self.adjust_points(test_shift_size, final_shift_size, adjust_iterations)
         return list(self.tris)
 
-    def smart_initialize(self, target_v, v_allowance, min_leap):
-        self.border_loops.append(self.first_border_node(target_v, v_allowance, min_leap))
+    def smart_initialize(self, target_v, v_allowance, min_leap, max_leap):
+        self.border_loops.append(self.first_border_node(target_v, v_allowance, min_leap, max_leap))
         while len(self.border_loops) != 0:
-            self.step(self.border_loops.pop(0), target_v, v_allowance, min_leap)
+            self.step(self.border_loops.pop(0), target_v, v_allowance, min_leap, max_leap)
 
-    def step(self, node, target_v, v_allowance, min_leap):
+    def step(self, node, target_v, v_allowance, min_leap, max_leap):
+        self.time_h.start_timing("step")
         if node is node.next.next.next:
             self.add_tri(node.point, node.next.point, node.next.next.point)
             self.test_render_new_triangle()
@@ -62,7 +66,8 @@ class TriHandler:
             p2 = n2.point
 
             longest_pb = self.longest_perpendicular_bisector(n1, n2)
-            new_point = self.v_binary_search(longest_pb[0], longest_pb[1], target_v, v_allowance, min_leap, p1, p2)
+            new_point = self.v_binary_search(longest_pb[0], longest_pb[1],
+                                             target_v, v_allowance, min_leap, max_leap, p1, p2)
 
             self.points.append(new_point)
             add_edge(p1, new_point)
@@ -82,28 +87,36 @@ class TriHandler:
                 link(n1, right_new_node)
                 link(right_new_node, right_edge_node)
 
-                self.search_for_bridges(left_new_node, target_v, v_allowance, min_leap)
-                self.search_for_bridges(right_new_node, target_v, v_allowance, min_leap)
+                self.search_for_bridges(left_new_node, target_v, v_allowance, min_leap, max_leap)
+                self.search_for_bridges(right_new_node, target_v, v_allowance, min_leap, max_leap)
 
             else:
                 new_node = BorderNode(new_point)
                 link(n1, new_node)
                 link(new_node, n2)
 
-                self.search_for_bridges(new_node, target_v, v_allowance, min_leap)
+                self.search_for_bridges(new_node, target_v, v_allowance, min_leap, max_leap)
+        self.time_h.end_timing("step")
 
     def test_render_new_triangle(self):
 
+        self.time_h.start_timing("test_render_new_triangle")
         print(self.tri_num)
 
-        if self.tri_num % 500 == 0:
+        if self.tri_num % 100 == 0:
             test_renderer = rend.PolyRenderer(self.pixels, self.tris)
             test_renderer.render('output\\output{0}.png'.format(self.tri_num))
-            test_renderer.variance_render('output\\variance{0}.png'.format(self.tri_num))
+            # test_renderer.variance_render('output\\variance{0}.png'.format(self.tri_num))
 
         self.tri_num += 1
 
-    def search_for_bridges(self, central_node, target_v, v_allowance, min_leap):
+        self.time_h.end_timing("test_render_new_triangle")
+
+        # self.time_h.print_report()
+
+    def search_for_bridges(self, central_node, target_v, v_allowance, min_leap, max_leap):
+        self.time_h.start_timing("search_for_bridges")
+
         valid_edges = central_node.find_possible_bridges()
         max_variance = target_v + v_allowance
         next_next = central_node.next
@@ -137,7 +150,10 @@ class TriHandler:
         link(central_node, next_next)
         self.border_loops.append(central_node.last)
 
-    def v_binary_search(self, start_point, max_point, target, allowance, min_leap, p1, p2):
+        self.time_h.end_timing("search_for_bridges")
+
+    def v_binary_search(self, start_point, max_point, target, allowance, min_leap, max_leap, p1, p2):
+        self.time_h.start_timing("v_binary_search")
         min_v = target - allowance
         max_v = target + allowance
 
@@ -145,13 +161,13 @@ class TriHandler:
 
         # not taking the square root to increase efficiency
         min_p_leap_squared = math.pow(min_leap, 2) / (math.pow(change_vector[0], 2) + math.pow(change_vector[1], 2))
+        max_p = max_leap / math.sqrt(math.pow(change_vector[0], 2) + math.pow(change_vector[1], 2))
 
         if Point(max_point[0], max_point[1]).on_edge(self.width, self.height):
-            percent = 1.0
-            p_leap = 0.5
+            percent = min(1.0, max_p)
         else:
-            percent = 0.5
-            p_leap = 0.25
+            percent = min(0.5, max_p)
+        p_leap = percent / 2
 
         while True:
             new_point = Point(start_point[0] + change_vector[0] * percent, start_point[1] + change_vector[1] * percent)
@@ -159,6 +175,7 @@ class TriHandler:
             variance = self.variance(pix, cap=max_v)
 
             if math.pow(p_leap, 2) < min_p_leap_squared:
+                self.time_h.end_timing("v_binary_search")
                 return new_point
 
             if (variance is None or variance <= min_v) and percent < 1.0:
@@ -166,12 +183,15 @@ class TriHandler:
             elif variance >= max_v and percent > 0.0:
                 percent -= p_leap
             else:
+                self.time_h.end_timing("v_binary_search")
                 return new_point
 
             p_leap = p_leap / 2
 
     # p1 -> endpoint -> p2 will be counterclockwise
     def longest_perpendicular_bisector(self, n1, n2):
+        self.time_h.start_timing("longest_perpendicular_bisector")
+
         p1 = n1.point
         p2 = n2.point
         start_point = (p1.x + p2.x) / 2, (p1.y + p2.y) / 2
@@ -199,9 +219,12 @@ class TriHandler:
 
             node = node.next
 
+        self.time_h.end_timing("longest_perpendicular_bisector")
         return start_point, end_point
 
     def border_intersection(self, start_point, direction):
+        self.time_h.start_timing("border_intersection")
+
         end_point = start_point[0] + direction[0], start_point[1] + direction[1]
         output = None
 
@@ -219,9 +242,12 @@ class TriHandler:
             if temp is not None:
                 output = temp
 
+        self.time_h.end_timing("border_intersection")
         return output
 
-    def first_border_node(self, target_v, v_allowance, min_leap):
+    def first_border_node(self, target_v, v_allowance, min_leap, max_leap):
+        self.time_h.start_timing("first_border_node")
+
         side = min(self.width, self.height) / 2
         leap = side / 2
         tl = Point(0, 0)
@@ -259,6 +285,7 @@ class TriHandler:
 
         self.test_render_new_triangle()
 
+        self.time_h.end_timing("first_border_node")
         return loop_from_list([p1, p2, Point(self.width, 0), Point(self.width, self.height), Point(0, self.height)])
 
     def rect_initialize(self, side):
@@ -369,6 +396,7 @@ class TriHandler:
         return output
 
     def variance(self, pix, median=None, cap=None):
+        # self.time_h.start_timing("variance")
         if len(pix) == 0:
             return None
         if median is None:
@@ -382,6 +410,7 @@ class TriHandler:
                 squared_sum += math.pow(color[2] - median[2], 2)
                 if cap is not None and squared_sum > cap:
                     return cap
+        # self.time_h.end_timing("variance")
         return squared_sum
 
     def print_net_variance(self):

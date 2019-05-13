@@ -11,7 +11,7 @@ class PolyRenderer:
         self.o_pix = [[240 for _ in i_pix[0]] for _ in i_pix]  # final pixels - initialize as all black
 
     def render(self, path):
-        tri_handler = th.TriHandler(self.i_pix)
+        tri_handler = th.TriHandler(self.i_pix, None)
         for tri in self.tris:
             tri_pix = th.pixels_in_tri(tri)
             if len(tri_pix) != 0:
@@ -30,7 +30,7 @@ class PolyRenderer:
     variance_range = 20000
 
     def variance_render(self, path):
-        tri_handler = th.TriHandler(self.i_pix)
+        tri_handler = th.TriHandler(self.i_pix, None)
         for tri in self.tris:
             tri_pix = th.pixels_in_tri(tri)
             if len(tri_pix) != 0:

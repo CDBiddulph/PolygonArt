@@ -65,6 +65,24 @@ class BorderNode:
 
         return output
 
+    def n1_of_diagonal_edge(self, width, height):
+        # min_difference =
+
+        output = self
+
+        n1 = self
+        n2 = self.next
+        while n2 is not self:
+            if not on_same_edge(n1.point, n2.point, width, height):
+                l_squared = distance_squared(n1.point, n2.point)
+                if l_squared > max_l_squared:
+                    max_l_squared = l_squared
+                    output = n1
+            n1 = n1.next
+            n2 = n2.next
+
+        return output
+
     def adjacent_edge_nodes(self, target, width, height):
         match_x = target.x_locked(width)
         match_y = target.y_locked(height)
