@@ -65,18 +65,20 @@ class BorderNode:
 
         return output
 
-    def n1_of_diagonal_edge(self, width, height):
-        # min_difference =
+    def n1_of_diagonal_edge(self, width, height):  # seems to lead to very small edges and crashing
+        min_difference = None
 
         output = self
 
         n1 = self
         n2 = self.next
         while n2 is not self:
-            if not on_same_edge(n1.point, n2.point, width, height):
-                l_squared = distance_squared(n1.point, n2.point)
-                if l_squared > max_l_squared:
-                    max_l_squared = l_squared
+            p1 = n1.point
+            p2 = n2.point
+            if not on_same_edge(p1, p2, width, height):
+                difference = abs((p1.x - p2.x) - (p2.y - p1.y))
+                if min_difference is None or difference < min_difference:
+                    min_difference = difference
                     output = n1
             n1 = n1.next
             n2 = n2.next
