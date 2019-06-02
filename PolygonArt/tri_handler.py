@@ -4,6 +4,7 @@ import math
 import statistics as stat
 from enum import Enum
 import random
+import pickle
 
 import poly_renderer as rend
 
@@ -36,16 +37,14 @@ class TriHandler:
         # debugs for efficiency
         self.time_h = time_h
 
-    def get_rect_tris(self, initial_side, test_shift_size, max_final_shift, adjust_iterations):
-        self.rect_initialize(initial_side)
-        self.adjust_points(test_shift_size, max_final_shift, adjust_iterations)
-        return list(self.tris)
+    def save_state(self, filename):
+        outfile = open(filename, "wb")
+        pickle.dump(self, outfile)
+        outfile.close()
+        print("Saved to", filename)
 
-    def get_smart_tris(self, target_v, v_allowance, min_leap, max_leap,
-                       test_shift_size, final_shift_size, adjust_iterations):
-        self.smart_initialize(target_v, v_allowance, min_leap, max_leap)
-        self.adjust_points(test_shift_size, final_shift_size, adjust_iterations)
-        return list(self.tris)
+    def get_tris(self):
+        return self.tris
 
     def smart_initialize(self, target_v, v_allowance, min_leap, max_leap):
         self.border_loops.append(self.first_border_node(target_v, v_allowance, min_leap, max_leap))
@@ -500,4 +499,12 @@ def pixels_in_half_tri(offset_origin, unordered_slope1, unordered_slope2, offset
                            math.ceil(origin_y + less_p_slope*(x - origin_x))):
                 out.append((x, y))
     return out
+
+
+def load_state(filename):
+    infile = open(filename, "rb")
+    temp = pickle.load(infile)
+    infile.close()
+    print("Loaded from", filename)
+    return temp
 
