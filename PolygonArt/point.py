@@ -271,5 +271,3 @@ def is_counterclockwise(p1, p2, p3):
 
 def distance_squared(p1, p2):
     return pow(p1.x - p2.x, 2) + pow(p1.y - p2.y, 2)
-
-# print(is_clockwise(Point(134.814, 140.710), Point(176.784, 173.303), Point(106.387, 116.590)))

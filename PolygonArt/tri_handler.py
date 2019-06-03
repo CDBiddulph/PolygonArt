@@ -103,9 +103,10 @@ class TriHandler:
         print(self.tri_num)
 
         if self.tri_num % 100 == 0 or (self.tri_num < 100 and self.tri_num % 10 == 0):
-            test_renderer = rend.PolyRenderer(self.pixels, self.tris)
+            test_renderer = rend.PolyRenderer(self.pixels, self.tris, scale=5.0)
             test_renderer.render('output\\output{0}.png'.format(self.tri_num))
             # test_renderer.variance_render('output\\variance{0}.png'.format(self.tri_num))
+            # self.save_state("states\\debug{0}".format(self.tri_num))
 
         self.tri_num += 1
 
@@ -335,7 +336,7 @@ class TriHandler:
         for p in range(len(self.points)):
             self.points[p].sort_adjacent()
         for iteration in range(num_iter):
-            test_renderer = rend.PolyRenderer(self.pixels, self.tris)
+            test_renderer = rend.PolyRenderer(self.pixels, self.tris, scale=5)
             test_renderer.render('output\iteration{}.png'.format(iteration))
             # test_renderer.variance_render('output\\v_iteration{}.png'.format(iteration))
             # self.print_net_variance()

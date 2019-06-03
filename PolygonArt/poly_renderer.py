@@ -1,21 +1,37 @@
 import png
 import tri_handler as th
 import colorsys
+from point import Point
 
 
 class PolyRenderer:
 
-    def __init__(self, i_pix, tris):
+    def __init__(self, i_pix, tris, scale=1):
         self.i_pix = i_pix  # original pixels
+        self.width = int(len(i_pix[0])/3)
+        self.height = len(i_pix)
         self.tris = tris
-        self.o_pix = [[240 for _ in i_pix[0]] for _ in i_pix]  # final pixels - initialize as all black
+
+        self.xs = true_scale(scale, self.width)
+        self.ys = true_scale(scale, self.height)
+        o_width = int(self.xs * self.width + 0.5)
+        o_height = int(self.ys * self.height + 0.5)
+        self.o_pix = [[240 for _ in range(o_width * 3)] for _ in range(o_height)]  # initialize as all black
 
     def render(self, path):
         tri_handler = th.TriHandler(self.i_pix, None)
-        for tri in self.tris:
+        for unscaled_tri in self.tris:
+            unscaled_tri_pix = th.pixels_in_tri(unscaled_tri)
+            tri = self.scaled_tri(unscaled_tri)
             tri_pix = th.pixels_in_tri(tri)
-            if len(tri_pix) != 0:
-                self.paint_pixels(tri_pix, tri_handler.median_color(tri_pix))
+            if len(unscaled_tri_pix) != 0:
+                self.paint_pixels(tri_pix, tri_handler.median_color(unscaled_tri_pix))
+            elif len(tri_pix) != 0:
+                x = int(unscaled_tri[0].x)
+                y = int(unscaled_tri[0].y)
+                x = x if x < self.width else self.width - 1
+                y = y if y < self.height else self.height - 1
+                self.paint_pixels(tri_pix, tri_handler.get_color((x, y)))
         self.save_image(path)
 
     def bw_render(self, path):
@@ -78,3 +94,15 @@ class PolyRenderer:
         w = png.Writer(len(self.o_pix[0])//3, len(self.o_pix))
         w.write(f, self.o_pix)
         f.close()
+
+    def scaled_tri(self, tri):
+        if self.xs == 1 and self.ys == 1:
+            return tri
+        p0 = Point(tri[0].x * self.xs, tri[0].y * self.ys)
+        p1 = Point(tri[1].x * self.xs, tri[1].y * self.ys)
+        p2 = Point(tri[2].x * self.xs, tri[2].y * self.ys)
+        return [p0, p1, p2]
+
+
+def true_scale(scale, dimension):
+    return int(scale * dimension + 0.5) / dimension  # adding 0.5 ensures rounding to nearest integer
