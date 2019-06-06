@@ -102,10 +102,13 @@ class TriHandler:
         self.time_h.start_timing("test_render_new_triangle")
         print(self.tri_num)
 
-        if self.tri_num % 100 == 0 or (self.tri_num < 100 and self.tri_num % 10 == 0):
-            test_renderer = rend.PolyRenderer(self.pixels, self.tris, scale=5.0)
+        if True:  # self.tri_num % 100 == 0 or (self.tri_num < 100 and self.tri_num % 10 == 0):
+            test_renderer = rend.PolyRenderer(self.pixels, self.tris, scale=1.0)
             test_renderer.render('output\\output{0}.png'.format(self.tri_num))
             # test_renderer.variance_render('output\\variance{0}.png'.format(self.tri_num))
+            # self.save_state("states\\debug{0}".format(self.tri_num))
+
+        # if self.tri_num % 100 == 0:
             # self.save_state("states\\debug{0}".format(self.tri_num))
 
         self.tri_num += 1

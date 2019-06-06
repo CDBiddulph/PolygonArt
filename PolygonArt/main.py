@@ -2,11 +2,14 @@ import poly_renderer as rend
 import tri_handler as th
 import png
 from time_handler import TimeHandler
+import sys
 
 time_h = TimeHandler()
 time_h.start_timing("setup")
 
-reader = png.Reader("input\\small_parrot.png")
+sys.setrecursionlimit(50000)  # otherwise pickle will throw a RecursionError
+
+reader = png.Reader("input\\small_dog.png")
 
 img = reader.read()
 width = img[0]
@@ -28,11 +31,11 @@ else:
 
 tri_handler = th.TriHandler(pixel_array, time_h)
 
-# tri_handler = th.load_state("states\\debug700")
+tri_handler = th.load_state("states\\debug1300")
 tris = tri_handler.get_tris()
 
 # target variance, variance allowance, minimum leap, maximum leap
-tri_handler.smart_initialize(50000, 100, 5.0, 10000000)
+tri_handler.smart_initialize(100000, 10000, 5.0, 10000000)
 
 # test shift size, final shift size, adjust iterations
 tri_handler.adjust_points(0.2, 0.05, 50)
