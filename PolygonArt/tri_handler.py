@@ -1,5 +1,6 @@
 from point import Point, slope, intersection, segment_intersection, on_same_edge, is_clockwise
 from border_node import BorderNode, loop_from_list, link
+from marker import Marker, get_color
 import math
 import statistics as stat
 from enum import Enum
@@ -47,9 +48,18 @@ class TriHandler:
         return self.tris
 
     def smart_initialize(self, target_v, v_allowance, min_leap, max_leap):
-        self.border_loops.append(self.first_border_node(target_v, v_allowance, min_leap, max_leap))
+        step_count = 0
+        if len(self.border_loops) == 0:  # necessary because of state saving
+            self.border_loops.append(self.first_border_node(target_v, v_allowance, min_leap, max_leap))
         while len(self.border_loops) != 0:
+            # print("BL len:", len(self.border_loops))
             self.step(self.border_loops.pop(0), target_v, v_allowance, min_leap, max_leap)
+
+            step_count += 1
+            if step_count > 30: # step_count % 10 == 0:
+                test_renderer = rend.PolyRenderer(self.pixels, self.tris, scale=3.0)
+                test_renderer.markers = self.border_loop_markers()
+                test_renderer.render('output\\step{0}.png'.format(step_count))
 
     def step(self, node, target_v, v_allowance, min_leap, max_leap):
         self.time_h.start_timing("step")
@@ -72,6 +82,8 @@ class TriHandler:
             add_edge(p1, new_point)
             add_edge(new_point, p2)
             self.add_tri(p1, p2, new_point)
+
+            # print(new_point)
 
             self.test_render_new_triangle()
 
@@ -100,11 +112,12 @@ class TriHandler:
     def test_render_new_triangle(self):
 
         self.time_h.start_timing("test_render_new_triangle")
-        print(self.tri_num)
+        print("Tri", self.tri_num)
 
-        if True:  # self.tri_num % 100 == 0 or (self.tri_num < 100 and self.tri_num % 10 == 0):
-            test_renderer = rend.PolyRenderer(self.pixels, self.tris, scale=1.0)
-            test_renderer.render('output\\output{0}.png'.format(self.tri_num))
+        if False:  # self.tri_num % 10 == 0:
+            test_renderer = rend.PolyRenderer(self.pixels, self.tris)
+            test_renderer.markers = list()
+            test_renderer.render('output\\tri{0}.png'.format(self.tri_num))
             # test_renderer.variance_render('output\\variance{0}.png'.format(self.tri_num))
             # self.save_state("states\\debug{0}".format(self.tri_num))
 
@@ -116,6 +129,20 @@ class TriHandler:
         self.time_h.end_timing("test_render_new_triangle")
 
         # self.time_h.print_report()
+
+    def border_loop_markers(self):
+        output = list()
+
+        count = 0
+        for l in self.border_loops:
+            points = l.to_list()
+            if len(points) > 3:
+                color = get_color(count)
+                count += 1
+                for p in points:
+                    output.append(Marker(p.x, p.y, color))
+
+        return output
 
     def search_for_bridges(self, central_node, target_v, v_allowance, min_leap, max_leap):
         self.time_h.start_timing("search_for_bridges")

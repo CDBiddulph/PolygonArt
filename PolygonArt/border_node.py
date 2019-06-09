@@ -12,6 +12,16 @@ class BorderNode:
         while node is not self.last:
             output += node.point.__str__() + " "
             node = node.next
+        output += node.point.__str__() + " "
+        return output
+
+    def to_list(self):
+        output = list()
+        node = self
+        while node is not self.last:
+            output.append(node.point)
+            node = node.next
+        output.append(node.point)
         return output
 
     def find_possible_bridges(self):

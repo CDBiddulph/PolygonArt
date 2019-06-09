@@ -6,7 +6,7 @@ from point import Point
 
 class PolyRenderer:
 
-    def __init__(self, i_pix, tris, scale=1):
+    def __init__(self, i_pix, tris, scale=1, m_radius=1):
         self.i_pix = i_pix  # original pixels
         self.width = int(len(i_pix[0])/3)
         self.height = len(i_pix)
@@ -14,9 +14,12 @@ class PolyRenderer:
 
         self.xs = true_scale(scale, self.width)
         self.ys = true_scale(scale, self.height)
-        o_width = int(self.xs * self.width + 0.5)
-        o_height = int(self.ys * self.height + 0.5)
-        self.o_pix = [[240 for _ in range(o_width * 3)] for _ in range(o_height)]  # initialize as all black
+        self.o_width = int(self.xs * self.width + 0.5)
+        self.o_height = int(self.ys * self.height + 0.5)
+        self.o_pix = [[0 for _ in range(self.o_width * 3)] for _ in range(self.o_height)]  # initialize as all black
+
+        self.markers = list()
+        self.m_radius = m_radius
 
     def render(self, path):
         tri_handler = th.TriHandler(self.i_pix, None)
@@ -32,6 +35,7 @@ class PolyRenderer:
                 x = x if x < self.width else self.width - 1
                 y = y if y < self.height else self.height - 1
                 self.paint_pixels(tri_pix, tri_handler.get_color((x, y)))
+        self.render_markers()
         self.save_image(path)
 
     def bw_render(self, path):
@@ -80,14 +84,23 @@ class PolyRenderer:
 
         self.save_image(path)
 
+    def render_markers(self):
+        for m in self.markers:
+            cx = int(m.x * self.xs)
+            cy = int(m.y * self.ys)
+            for x in range(cx - self.m_radius, cx + self.m_radius):
+                for y in range(cy - self.m_radius, cy + self.m_radius):
+                    self.paint_pixel((x, y), m.color)
+
     def paint_pixels(self, pix, color):
         for p in pix:
             self.paint_pixel(p, color)
 
     def paint_pixel(self, point, color):
-        start_index = point[0] * 3
-        for i in range(3):
-            self.o_pix[point[1]][start_index + i] = color[i]
+        if 0 <= point[0] < self.o_width and 0 <= point[1] < self.o_height:
+            start_index = point[0] * 3
+            for i in range(3):
+                self.o_pix[point[1]][start_index + i] = color[i]
 
     def save_image(self, path):
         f = open(path, 'wb')

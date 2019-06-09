@@ -31,8 +31,7 @@ else:
 
 tri_handler = th.TriHandler(pixel_array, time_h)
 
-tri_handler = th.load_state("states\\debug1300")
-tris = tri_handler.get_tris()
+tri_handler = th.load_state("states\\debug1100")
 
 # target variance, variance allowance, minimum leap, maximum leap
 tri_handler.smart_initialize(100000, 10000, 5.0, 10000000)
@@ -40,6 +39,7 @@ tri_handler.smart_initialize(100000, 10000, 5.0, 10000000)
 # test shift size, final shift size, adjust iterations
 tri_handler.adjust_points(0.2, 0.05, 50)
 
+tris = tri_handler.get_tris()
 renderer = rend.PolyRenderer(pixel_array, tris, scale=5.0)
 
 renderer.render('output\\output.png')
