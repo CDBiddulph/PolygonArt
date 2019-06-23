@@ -132,6 +132,8 @@ class Point:
     def dist_squared_from_line(self, p1, p2):
         numerator = pow((p2.y - p1.y) * self.x - (p2.x - p1.x) * self.y + p2.x * p1.y - p2.y * p1.x, 2)
         denominator = pow(p2.y - p1.y, 2) + pow(p2.x - p1.x, 2)
+        if denominator == 0:
+            return math.inf
         return numerator / denominator
 
     def in_stripe(self, b, c):

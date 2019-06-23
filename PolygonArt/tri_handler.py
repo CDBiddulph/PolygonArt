@@ -53,13 +53,17 @@ class TriHandler:
             self.border_loops.append(self.first_border_node(target_v, v_allowance, min_leap, max_leap))
         while len(self.border_loops) != 0:
             # print("BL len:", len(self.border_loops))
-            self.step(self.border_loops.pop(0), target_v, v_allowance, min_leap, max_leap)
 
             step_count += 1
-            if step_count > 30: # step_count % 10 == 0:
-                test_renderer = rend.PolyRenderer(self.pixels, self.tris, scale=3.0)
-                test_renderer.markers = self.border_loop_markers()
-                test_renderer.render('output\\step{0}.png'.format(step_count))
+            # if step_count >= 0:
+            #     test_renderer = rend.PolyRenderer(self.pixels, self.tris, scale=3.0)
+            #     test_renderer.markers = self.border_loop_markers()
+            #     test_renderer.render('output\\step{0}.png'.format(step_count))
+
+            # if step_count % 10 == 0:
+            #     self.save_state("states\\step{0}".format(step_count))
+
+            self.step(self.border_loops.pop(0), target_v, v_allowance, min_leap, max_leap)
 
     def step(self, node, target_v, v_allowance, min_leap, max_leap):
         self.time_h.start_timing("step")
@@ -82,8 +86,6 @@ class TriHandler:
             add_edge(p1, new_point)
             add_edge(new_point, p2)
             self.add_tri(p1, p2, new_point)
-
-            # print(new_point)
 
             self.test_render_new_triangle()
 
@@ -114,14 +116,11 @@ class TriHandler:
         self.time_h.start_timing("test_render_new_triangle")
         print("Tri", self.tri_num)
 
-        if False:  # self.tri_num % 10 == 0:
+        if self.tri_num % 1 == 0:
             test_renderer = rend.PolyRenderer(self.pixels, self.tris)
             test_renderer.markers = list()
             test_renderer.render('output\\tri{0}.png'.format(self.tri_num))
             # test_renderer.variance_render('output\\variance{0}.png'.format(self.tri_num))
-            # self.save_state("states\\debug{0}".format(self.tri_num))
-
-        # if self.tri_num % 100 == 0:
             # self.save_state("states\\debug{0}".format(self.tri_num))
 
         self.tri_num += 1
@@ -358,8 +357,7 @@ class TriHandler:
     # make sure to add points to self.points and call addEdge before or after calling this
     def add_tri(self, p1, p2, p3):
         if p1 == p2 or p2 == p3 or p3 == p1:
-            print("Error: two or more points in tri were identical")
-            return
+            raise Exception("Two or more points in tri were identical")
         self.tris.append([p1, p2, p3])
 
     def adjust_points(self, t_shift_size, max_f_shift, num_iter):

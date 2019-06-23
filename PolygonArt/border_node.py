@@ -31,21 +31,32 @@ class BorderNode:
         output = list()
 
         while n2 is not self:
-
             p1 = n1.point
             p2 = n2.point
 
-            if is_clockwise(self.point, mcw, p1):
-                mcw = p1
+            if len(output) != 0:
+                mcw = output[-1][1].point  # simplify?
 
             if not is_counterclockwise(self.point, p1, p2):  # edge is oriented towards self
                 if is_counterclockwise(self.point, mcw, p1):  # mcw's edge "blocks" p1's edge, or vice versa
+                    # it's this one below that isn't calling
+                    # possibly remove mcw when an edge is popped?
                     if is_counterclockwise(p1, p2, mcw):  # p1's edge blocks mcw's edge
-                        while len(output) != 0 and is_clockwise(self.point, p1, output[-1][1].point):
-                            output.pop(-1)  # may not call at all
-                        output.append((n1, n2))
+                        to_append = True
+                        while len(output) > 0 and is_clockwise(self.point, p1, output[-1][1].point):
+                            if is_counterclockwise(p1, p2, output[-1][1].point):
+                                output.pop(-1)  # may not call at all
+                            else:  # if one of the past output edges ends up in front of this one
+                                to_append = False
+                                break  # get out of this while loop
+
+                        # do we need a parallel of "is_clockwise(self.point, p1, output[-1][1].point)" here?
+                        if len(output) == 0 and not is_counterclockwise(p1, p2, self.next.point):
+                            to_append = False
+                        if to_append:
+                            output.append((n1, n2))
                     # else: do nothing; do not append n1 and n2
-                else:  # if colinear (meaning p1 and mcw are probably the same point) or clockwise
+                else:  # if collinear (meaning p1 and mcw are probably the same point) or clockwise
                     output.append((n1, n2))
 
             n1 = n1.next

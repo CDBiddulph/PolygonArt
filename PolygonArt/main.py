@@ -9,7 +9,7 @@ time_h.start_timing("setup")
 
 sys.setrecursionlimit(50000)  # otherwise pickle will throw a RecursionError
 
-reader = png.Reader("input\\small_dog.png")
+reader = png.Reader("input\\library.png")
 
 img = reader.read()
 width = img[0]
@@ -31,10 +31,10 @@ else:
 
 tri_handler = th.TriHandler(pixel_array, time_h)
 
-tri_handler = th.load_state("states\\debug1100")
+tri_handler = th.load_state("states\\step4040")
 
 # target variance, variance allowance, minimum leap, maximum leap
-tri_handler.smart_initialize(100000, 10000, 5.0, 10000000)
+tri_handler.smart_initialize(500000, 10000, 5.0, 10000000)
 
 # test shift size, final shift size, adjust iterations
 tri_handler.adjust_points(0.2, 0.05, 50)
