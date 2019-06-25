@@ -27,21 +27,15 @@ class BorderNode:
     def find_possible_bridges(self):
         n1 = self.next
         n2 = n1.next
-        mcw = n1.point
-        output = list()
+        output = [(self, self.next)]
 
         while n2 is not self:
             p1 = n1.point
             p2 = n2.point
 
-            if len(output) != 0:
-                mcw = output[-1][1].point  # simplify?
-
             if not is_counterclockwise(self.point, p1, p2):  # edge is oriented towards self
-                if is_counterclockwise(self.point, mcw, p1):  # mcw's edge "blocks" p1's edge, or vice versa
-                    # it's this one below that isn't calling
-                    # possibly remove mcw when an edge is popped?
-                    if is_counterclockwise(p1, p2, mcw):  # p1's edge blocks mcw's edge
+                if is_counterclockwise(self.point, output[-1][1].point, p1):  # output[-1] blocks (p1, p2) or vice versa
+                    if is_counterclockwise(p1, p2, output[-1][1].point):  # (p1, p2) blocks output[-1]
                         to_append = True
                         while len(output) > 0 and is_clockwise(self.point, p1, output[-1][1].point):
                             if is_counterclockwise(p1, p2, output[-1][1].point):
@@ -50,24 +44,21 @@ class BorderNode:
                                 to_append = False
                                 break  # get out of this while loop
 
-                        # do we need a parallel of "is_clockwise(self.point, p1, output[-1][1].point)" here?
-                        if len(output) == 0 and not is_counterclockwise(p1, p2, self.next.point):
-                            to_append = False
                         if to_append:
                             output.append((n1, n2))
-                    # else: do nothing; do not append n1 and n2
-                else:  # if collinear (meaning p1 and mcw are probably the same point) or clockwise
+                    # else: output[-1] blocks (p1, p2) - do nothing; do not append n1 and n2
+                else:  # if collinear (meaning n1 and output[-1][1] are probably the same) or clockwise
                     output.append((n1, n2))
 
             n1 = n1.next
             n2 = n2.next
 
-        while len(output) != 0 and \
+        while len(output) > 1 and \
                 not is_counterclockwise(self.point, self.last.point, output[-1][1].point) and \
                 self.last.point is not output[-1][1].point:
             output.pop(-1)
 
-        return output
+        return output[1:]  # cut off the very first edge, since it was only there for reference
 
     def n1_of_largest_edge(self, width, height):
         max_l_squared = 0
