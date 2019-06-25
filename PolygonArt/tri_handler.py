@@ -55,13 +55,12 @@ class TriHandler:
             # print("BL len:", len(self.border_loops))
 
             step_count += 1
-            if step_count >= 0:
-                test_renderer = rend.PolyRenderer(self.pixels, self.tris, scale=2.0)
-                test_renderer.markers = self.border_loop_markers()
-                test_renderer.render('output\\new_step{0}.png'.format(step_count))
+            # if step_count >= 0:
+            #     test_renderer = rend.PolyRenderer(self.pixels, self.tris, scale=4.0)
+            #     test_renderer.markers = self.border_loop_markers()
+            #     test_renderer.render('output\\bordered{0}.png'.format(self.tri_num))
 
-            # if step_count % 10 == 0:
-            #     self.save_state("states\\step{0}".format(step_count))
+            # self.save_state("states\\tri{0}".format(self.tri_num))
 
             self.step(self.border_loops.pop(0), target_v, v_allowance, min_leap, max_leap)
 
@@ -116,7 +115,7 @@ class TriHandler:
         self.time_h.start_timing("test_render_new_triangle")
         print("Tri", self.tri_num)
 
-        if self.tri_num % 100 == 0:
+        if self.tri_num % 500 == 0:
             test_renderer = rend.PolyRenderer(self.pixels, self.tris)
             test_renderer.markers = list()
             test_renderer.render('output\\tri{0}.png'.format(self.tri_num))

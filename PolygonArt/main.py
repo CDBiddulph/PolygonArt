@@ -31,7 +31,7 @@ else:
 
 tri_handler = th.TriHandler(pixel_array, time_h)
 
-# tri_handler = th.load_state("states\\step4010")
+# tri_handler = th.load_state("states\\tri4278")
 
 # target variance, variance allowance, minimum leap, maximum leap
 tri_handler.smart_initialize(500000, 10000, 5.0, 10000000)

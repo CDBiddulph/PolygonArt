@@ -33,11 +33,20 @@ class BorderNode:
             p1 = n1.point
             p2 = n2.point
 
-            if not is_counterclockwise(self.point, p1, p2):  # edge is oriented towards self
+            # edge is oriented towards self, and the new edge is not obscured by the two edges that "self" is a part of
+            # honestly not sure if this solves the problem I was having, or if it is just a band-aid
+            if not is_counterclockwise(self.point, p1, p2) and \
+                    not (
+                            (is_clockwise(self.point, p1, self.next.point) and
+                             is_counterclockwise(self.point, p1, self.last.point)) or
+                            (is_clockwise(self.point, p2, self.next.point) and
+                             is_counterclockwise(self.point, p2, self.last.point))
+                    ):
                 if is_counterclockwise(self.point, output[-1][1].point, p1):  # output[-1] blocks (p1, p2) or vice versa
                     if is_counterclockwise(p1, p2, output[-1][1].point):  # (p1, p2) blocks output[-1]
                         to_append = True
-                        while len(output) > 0 and is_clockwise(self.point, p1, output[-1][1].point):
+                        # while there are removable output edges and output[-1] blocks (p1, p2) or vice versa
+                        while len(output) > 1 and is_counterclockwise(self.point, output[-1][1].point, p1):
                             if is_counterclockwise(p1, p2, output[-1][1].point):
                                 output.pop(-1)  # may not call at all
                             else:  # if one of the past output edges ends up in front of this one
