@@ -1,4 +1,5 @@
 import math
+import random
 
 
 class Point:
@@ -6,6 +7,7 @@ class Point:
         self.x = x
         self.y = y
         self.adjacent = list()
+        self.id = random.uniform(0, 1)
 
     def __lt__(self, other):
         if self.x == other.x:
@@ -22,6 +24,9 @@ class Point:
 
     def __str__(self):
         return "({}, {})".format('%.3f' % self.x, '%.3f' % self.y)
+
+    def __hash__(self):
+        return hash(self.id)
 
     # hopefully, this method will become obsolete later on,
     # when we can just insert new points in the correct position.

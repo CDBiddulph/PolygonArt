@@ -1,6 +1,7 @@
 from point import Point, slope, intersection, segment_intersection, on_same_edge, is_clockwise
 from border_node import BorderNode, loop_from_list, link
 from marker import Marker, get_color
+from triangle import Triangle
 import math
 import statistics as stat
 from enum import Enum
@@ -28,8 +29,8 @@ class TriHandler:
         self.height = len(pixels)
         # points is a list of points (with references to other points)
         self.points = list()
-        # tris is a list of 3-lists of points
-        self.tris = list()
+        # tris is a set of 3-lists of points
+        self.tris = set()
         # tri_num is the index of the last triangle created, for debugging
         self.tri_num = 0
         # border_loops is a list of nodes representing each individual loop of border nodes
@@ -160,7 +161,7 @@ class TriHandler:
                 not on_same_edge(n1.point, n2.point, self.width, self.height)) or \
                 (n1.point.dist_squared_from_line(n2.point, central_point) > pow(min_leap, 2) and
                  n2.point.dist_squared_from_line(n1.point, central_point) > pow(min_leap, 2) and
-                 self.variance(pixels_in_tri([central_point, n1.point, n2.point]), cap=max_variance) < max_variance):
+                 self.variance(pixels_in_tri(Triangle([central_point, n1.point, n2.point])), cap=max_variance) < max_variance):
 
                 new_node = BorderNode(central_point)
                 link(n1, new_node)
@@ -200,7 +201,7 @@ class TriHandler:
 
         while True:
             new_point = Point(start_point[0] + change_vector[0] * percent, start_point[1] + change_vector[1] * percent)
-            pix = pixels_in_tri([p1, p2, new_point])
+            pix = pixels_in_tri(Triangle([p1, p2, new_point]))
             variance = self.variance(pix, cap=max_v)
 
             if math.pow(p_leap, 2) < min_p_leap_squared:
@@ -284,7 +285,7 @@ class TriHandler:
         max_v = target_v + v_allowance
 
         while True:
-            variance = self.variance(pixels_in_tri([tl, Point(0, side), Point(side, 0)]), cap=max_v)
+            variance = self.variance(pixels_in_tri(Triangle([tl, Point(0, side), Point(side, 0)])), cap=max_v)
 
             if leap < min_leap:
                 break
@@ -358,13 +359,13 @@ class TriHandler:
     def add_tri(self, p1, p2, p3):
         if p1 == p2 or p2 == p3 or p3 == p1:
             raise Exception("Two or more points in tri were identical")
-        self.tris.append([p1, p2, p3])
+        self.tris.add(Triangle([p1, p2, p3]))
 
     def adjust_points(self, t_shift_size, max_f_shift, num_iter):
         for p in range(len(self.points)):
             self.points[p].sort_adjacent()
         for iteration in range(num_iter):
-            test_renderer = rend.PolyRenderer(self.pixels, self.tris, scale=5)
+            test_renderer = rend.PolyRenderer(self.pixels, self.tris, scale=5.0)
             test_renderer.render('output\iteration{}.png'.format(iteration))
             # test_renderer.variance_render('output\\v_iteration{}.png'.format(iteration))
             # self.print_net_variance()
@@ -481,22 +482,19 @@ def add_edge(p1, p2):
 
 
 def pixels_in_tri(tri):
-    # if the elements of tris are tuples, turn them into points
-    if isinstance(tri[0], tuple):
-        tri[0] = Point(tri[0][0], tri[0][1])
-    if isinstance(tri[1], tuple):
-        tri[1] = Point(tri[1][0], tri[1][1])
-    if isinstance(tri[2], tuple):
-        tri[2] = Point(tri[2][0], tri[2][1])
+    if isinstance(tri, Triangle):
+        points = tri.points
+    else:
+        points = tri
 
-    tri.sort()
-    x_cutoff = tri[1].x
-    common_slope = slope(tri[0], tri[2])
-    slope1 = slope(tri[0], tri[1])
-    slope2 = slope(tri[1], tri[2])
+    points.sort()
+    x_cutoff = points[1].x
+    common_slope = slope(points[0], points[2])
+    slope1 = slope(points[0], points[1])
+    slope2 = slope(points[1], points[2])
     return \
-        pixels_in_half_tri(tri[0], common_slope, slope1, x_cutoff) + \
-        pixels_in_half_tri(tri[2], common_slope, slope2, x_cutoff)
+        pixels_in_half_tri(points[0], common_slope, slope1, x_cutoff) + \
+        pixels_in_half_tri(points[2], common_slope, slope2, x_cutoff)
 
 
 def pixels_in_half_tri(offset_origin, unordered_slope1, unordered_slope2, offset_x_cutoff):

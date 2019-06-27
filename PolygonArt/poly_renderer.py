@@ -30,8 +30,8 @@ class PolyRenderer:
             if len(unscaled_tri_pix) != 0:
                 self.paint_pixels(tri_pix, tri_handler.median_color(unscaled_tri_pix))
             elif len(tri_pix) != 0:
-                x = int(unscaled_tri[0].x)
-                y = int(unscaled_tri[0].y)
+                x = int(unscaled_tri.points[0].x)
+                y = int(unscaled_tri.points[0].y)
                 x = x if x < self.width else self.width - 1
                 y = y if y < self.height else self.height - 1
                 self.paint_pixels(tri_pix, tri_handler.get_color((x, y)))
@@ -111,9 +111,10 @@ class PolyRenderer:
     def scaled_tri(self, tri):
         if self.xs == 1 and self.ys == 1:
             return tri
-        p0 = Point(tri[0].x * self.xs, tri[0].y * self.ys)
-        p1 = Point(tri[1].x * self.xs, tri[1].y * self.ys)
-        p2 = Point(tri[2].x * self.xs, tri[2].y * self.ys)
+        points = tri.points
+        p0 = Point(points[0].x * self.xs, points[0].y * self.ys)
+        p1 = Point(points[1].x * self.xs, points[1].y * self.ys)
+        p2 = Point(points[2].x * self.xs, points[2].y * self.ys)
         return [p0, p1, p2]
 
 
