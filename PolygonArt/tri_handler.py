@@ -1,4 +1,4 @@
-from point import Point, slope, intersection, segment_intersection, on_same_edge, is_clockwise
+from point import Point, slope, intersection, segment_intersection, on_same_edge, is_clockwise, opposite_edge
 from border_node import BorderNode, loop_from_list, link
 from marker import Marker, get_color
 from triangle import Triangle
@@ -29,6 +29,8 @@ class TriHandler:
         self.height = len(pixels)
         # points is a list of points (with references to other points)
         self.points = list()
+        # internal_edges is a list of 2-lists of points
+        self.internal_edges = list()
         # tris is a set of 3-lists of points
         self.tris = set()
         # tri_num is the index of the last triangle created, for debugging
@@ -38,15 +40,6 @@ class TriHandler:
 
         # debugs for efficiency
         self.time_h = time_h
-
-    def save_state(self, filename):
-        outfile = open(filename, "wb")
-        pickle.dump(self, outfile)
-        outfile.close()
-        print("Saved to", filename)
-
-    def get_tris(self):
-        return self.tris
 
     def smart_initialize(self, target_v, v_allowance, min_leap, max_leap):
         step_count = 0
@@ -61,9 +54,11 @@ class TriHandler:
             #     test_renderer.markers = self.border_loop_markers()
             #     test_renderer.render('output\\bordered{0}.png'.format(self.tri_num))
 
-            # self.save_state("states\\tri{0}".format(self.tri_num))
+            # self.save_state("tri{0}".format(self.tri_num))
 
             self.step(self.border_loops.pop(0), target_v, v_allowance, min_leap, max_leap)
+
+        self.save_state("initialized")
 
     def step(self, node, target_v, v_allowance, min_leap, max_leap):
         self.time_h.start_timing("step")
@@ -83,8 +78,8 @@ class TriHandler:
                                              target_v, v_allowance, min_leap, max_leap, p1, p2)
 
             self.points.append(new_point)
-            add_edge(p1, new_point)
-            add_edge(new_point, p2)
+            self.add_edge(p1, new_point)
+            self.add_edge(new_point, p2)
             self.add_tri(p1, p2, new_point)
 
             self.test_render_new_triangle()
@@ -121,7 +116,7 @@ class TriHandler:
             test_renderer.markers = list()
             test_renderer.render('output\\tri{0}.png'.format(self.tri_num))
             # test_renderer.variance_render('output\\variance{0}.png'.format(self.tri_num))
-            # self.save_state("states\\debug{0}".format(self.tri_num))
+            # self.save_state("debug{0}".format(self.tri_num))
 
         self.tri_num += 1
 
@@ -161,7 +156,8 @@ class TriHandler:
                 not on_same_edge(n1.point, n2.point, self.width, self.height)) or \
                 (n1.point.dist_squared_from_line(n2.point, central_point) > pow(min_leap, 2) and
                  n2.point.dist_squared_from_line(n1.point, central_point) > pow(min_leap, 2) and
-                 self.variance(pixels_in_tri(Triangle([central_point, n1.point, n2.point])), cap=max_variance) < max_variance):
+                 self.variance(pixels_in_tri(Triangle([central_point, n1.point, n2.point])), cap=max_variance)
+                 < max_variance):
 
                 new_node = BorderNode(central_point)
                 link(n1, new_node)
@@ -169,10 +165,12 @@ class TriHandler:
 
                 next_next = n2
 
-                add_edge(n1.point, new_node.point)
-                add_edge(n2.point, new_node.point)
-                self.add_tri(n1.point, n2.point, new_node.point)
+                if n1.last.point is not central_point:
+                    self.add_edge(n1.point, central_point)
+                if n2.next.point is not central_point:
+                    self.add_edge(n2.point, central_point)
 
+                self.add_tri(n1.point, n2.point, new_node.point)
                 self.test_render_new_triangle()
 
                 self.border_loops.append(new_node.last)
@@ -275,49 +273,6 @@ class TriHandler:
         self.time_h.end_timing("border_intersection")
         return output
 
-    def first_border_node(self, target_v, v_allowance, min_leap, max_leap):
-        self.time_h.start_timing("first_border_node")
-
-        side = min(self.width, self.height) / 2
-        leap = side / 2
-        tl = Point(0, 0)
-        min_v = target_v - v_allowance
-        max_v = target_v + v_allowance
-
-        while True:
-            variance = self.variance(pixels_in_tri(Triangle([tl, Point(0, side), Point(side, 0)])), cap=max_v)
-
-            if leap < min_leap:
-                break
-
-            if (variance is None or variance <= min_v) and side < min(self.width, self.height):
-                side += leap
-            elif variance >= max_v and side > 0.0:
-                side -= leap
-            else:
-                break
-
-            leap = leap / 2
-
-        # just going to divide by two to avoid making a big, flat edge
-        p1 = Point(0, side / 2)
-        p2 = Point(side / 2, 0)
-
-        self.points.append(p1)
-        self.points.append(p2)
-        self.points.append(tl)
-
-        add_edge(p1, p2)
-        add_edge(p2, tl)
-        add_edge(tl, p1)
-
-        self.add_tri(p1, p2, tl)
-
-        self.test_render_new_triangle()
-
-        self.time_h.end_timing("first_border_node")
-        return loop_from_list([p1, p2, Point(self.width, 0), Point(self.width, self.height), Point(0, self.height)])
-
     def rect_initialize(self, side):
         true_sx = self.width / (self.width // side)
         true_sy = self.height / (self.height // side)
@@ -341,34 +296,28 @@ class TriHandler:
 
                 self.add_tri(o, r, dr)
                 self.add_tri(o, d, dr)
-                add_edge(o, r)
-                add_edge(o, dr)
-                add_edge(o, d)
+                self.add_edge(o, r)
+                self.add_edge(o, dr)
+                self.add_edge(o, d)
 
         for y in range(s_height):
-            add_edge(t_points[y][s_width], t_points[y + 1][s_width])
+            self.add_edge(t_points[y][s_width], t_points[y + 1][s_width])
         for x in range(s_width):
-            add_edge(t_points[s_height][x], t_points[s_height][x + 1])
+            self.add_edge(t_points[s_height][x], t_points[s_height][x + 1])
 
         for r in t_points:
             for p in r:
                 self.points.append(p)
 
-    # takes three x,y tuples representing points
-    # make sure to add points to self.points and call addEdge before or after calling this
-    def add_tri(self, p1, p2, p3):
-        if p1 == p2 or p2 == p3 or p3 == p1:
-            raise Exception("Two or more points in tri were identical")
-        self.tris.add(Triangle([p1, p2, p3]))
-
     def adjust_points(self, t_shift_size, max_f_shift, num_iter):
-        for p in range(len(self.points)):
-            self.points[p].sort_adjacent()
         for iteration in range(num_iter):
-            test_renderer = rend.PolyRenderer(self.pixels, self.tris, scale=5.0)
+            # self.flip_edges()
+            for p in range(len(self.points)):  # might not be necessary to do this every iteration
+                self.points[p].sort_adjacent()
+            test_renderer = rend.PolyRenderer(self.pixels, self.tris, scale=4.0)
             test_renderer.render('output\iteration{}.png'.format(iteration))
-            # test_renderer.variance_render('output\\v_iteration{}.png'.format(iteration))
-            # self.print_net_variance()
+            # test_renderer.variance_render('output\\iteration{}v.png'.format(iteration))
+            self.print_net_variance()
             print("Iteration", (iteration + 1))
             for p in range(len(self.points)):
                 point = self.points[p]
@@ -412,6 +361,109 @@ class TriHandler:
 
                     point.x = final_point[0]
                     point.y = final_point[1]
+
+    def flip_edges(self):
+        new_internal_edges = list()
+        while len(self.internal_edges) != 0:
+            edge = self.internal_edges.pop()
+            o_edge = opposite_edge(edge)
+            if o_edge is not None:
+                current_tri1 = [o_edge[0], edge[0], edge[1]]
+                current_tri2 = [o_edge[1], edge[0], edge[1]]
+                current_var1 = self.variance(pixels_in_tri(current_tri1))
+                current_var2 = self.variance(pixels_in_tri(current_tri2))
+
+                new_tri1 = [edge[0], o_edge[0], o_edge[1]]
+                new_tri2 = [edge[1], o_edge[0], o_edge[1]]
+                new_var1 = self.variance(pixels_in_tri(new_tri1))
+                new_var2 = self.variance(pixels_in_tri(new_tri2))
+
+                # if the triangle does not contain any pixels, it MUST be flipped
+                # a bit of an odd move, but maybe it'll discourage small/skinny triangles
+                if None in (current_var1, current_var2, new_var1, new_var2) or \
+                        new_var1 + new_var2 < current_var1 + current_var1:
+                    # flip the edge
+
+                    self.tris.remove(Triangle(current_tri1))
+                    self.tris.remove(Triangle(current_tri2))
+
+                    self.tris.add(Triangle(new_tri1))
+                    self.tris.add(Triangle(new_tri2))
+
+                    remove_edge(edge[0], edge[1])
+                    self.add_edge(o_edge[0], o_edge[1], auto_add_to_ie=False)
+
+                    new_internal_edges.append(o_edge)
+                else:
+                    new_internal_edges.append(edge)
+            else:
+                new_internal_edges.append(edge)
+        self.internal_edges = new_internal_edges
+
+    def first_border_node(self, target_v, v_allowance, min_leap, max_leap):
+        self.time_h.start_timing("first_border_node")
+
+        side = min(self.width, self.height) / 2
+        leap = side / 2
+        tl = Point(0, 0)
+        min_v = target_v - v_allowance
+        max_v = target_v + v_allowance
+
+        while True:
+            variance = self.variance(pixels_in_tri(Triangle([tl, Point(0, side), Point(side, 0)])), cap=max_v)
+
+            if leap < min_leap:
+                break
+
+            if (variance is None or variance <= min_v) and side < min(self.width, self.height):
+                side += leap
+            elif variance >= max_v and side > 0.0:
+                side -= leap
+            else:
+                break
+
+            leap = leap / 2
+
+        # just going to divide by two to avoid making a big, flat edge
+        p1 = Point(0, side / 2)
+        p2 = Point(side / 2, 0)
+
+        self.points.append(p1)
+        self.points.append(p2)
+        self.points.append(tl)
+
+        self.add_edge(p1, p2)
+        self.add_edge(p2, tl)
+        self.add_edge(tl, p1)
+
+        self.add_tri(p1, p2, tl)
+
+        self.test_render_new_triangle()
+
+        self.time_h.end_timing("first_border_node")
+        return loop_from_list([p1, p2, Point(self.width, 0), Point(self.width, self.height), Point(0, self.height)])
+
+    # takes three x,y tuples representing points
+    # make sure to add points to self.points and call addEdge before or after calling this
+    def add_tri(self, p1, p2, p3):
+        if p1 == p2 or p2 == p3 or p3 == p1:
+            raise Exception("Two or more points in tri were identical")
+        self.tris.add(Triangle([p1, p2, p3]))
+
+    def add_edge(self, p1, p2, auto_add_to_ie=True):
+        # if p2 in p1.adjacent or p1 in p2.adjacent:
+        #     raise Exception("Tried to add an already-existing edge between {0} and {1}".format(p1, p2))
+        if auto_add_to_ie and not on_same_edge(p1, p2, self.width, self.height):
+            self.internal_edges.append((p1, p2))
+        p1.adjacent.append(p2)
+        p2.adjacent.append(p1)
+
+    def save_state(self, filename):
+        filename = "states//" + filename
+        outfile = open(filename, "wb")
+        pickle.dump(self, outfile)
+        outfile.close()
+        print("Saved to", filename)
 
     def net_variance(self, tris, colors):
         output = 0
@@ -475,15 +527,20 @@ class TriHandler:
             print("Error: point %d, %d out of range" % (point[0], point[1]))
             return None
 
+    def get_tris(self):
+        return self.tris
 
-def add_edge(p1, p2):
-    p1.adjacent.append(p2)
-    p2.adjacent.append(p1)
+
+# Pre-condition: p1 and p2 already have references to each other
+def remove_edge(p1, p2):  # TODO: This might not be working all the time
+    # potentially can raise an exception, but assuming there isn't a bug, this won't happen
+    p1.adjacent.remove(p2)
+    p2.adjacent.remove(p1)
 
 
 def pixels_in_tri(tri):
     if isinstance(tri, Triangle):
-        points = tri.points
+        points = tri.get_points()
     else:
         points = tri
 

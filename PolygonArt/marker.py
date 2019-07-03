@@ -4,6 +4,14 @@ class Marker:
         self.y = y
         self.color = color
 
+    def __init__(self, point, color=None):
+        self.x = point.x
+        self.y = point.y
+        if color is None:
+            self.color = get_color(6)
+        else:
+            self.color = color
+
 
 int_to_color = {
     0: (255, 0, 0),
@@ -12,7 +20,8 @@ int_to_color = {
     3: (255, 255, 0),
     4: (0, 255, 255),
     5: (255, 0, 255),
-    6: (255, 255, 255)
+    6: (255, 255, 255),
+    7: (0, 0, 0)
 }
 
 

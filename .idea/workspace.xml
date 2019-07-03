@@ -2,300 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a75c81e6-1442-4533-a475-b0c934976399" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/PolygonArt/triangle.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/PolygonArt/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/PolygonArt/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/output/iteration0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/output/iteration1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/output/iteration10.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/output/iteration11.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/output/iteration12.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/output/iteration13.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/output/iteration14.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/output/iteration15.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/output/iteration16.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/output/iteration17.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/output/iteration18.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/output/iteration19.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/output/iteration2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/output/iteration20.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/output/iteration21.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/output/iteration22.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/output/iteration23.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/output/iteration24.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/output/iteration25.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/output/iteration26.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/output/iteration27.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/output/iteration28.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/output/iteration29.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/output/iteration3.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/output/iteration30.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/output/iteration31.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/output/iteration32.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/output/iteration33.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/output/iteration34.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/output/iteration35.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/output/iteration36.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/output/iteration37.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/output/iteration38.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/output/iteration39.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/output/iteration4.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/output/iteration40.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/output/iteration41.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/output/iteration42.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/output/iteration43.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/output/iteration44.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/output/iteration45.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/output/iteration46.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/output/iteration47.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/output/iteration48.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/output/iteration49.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/output/iteration5.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/output/iteration6.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/output/iteration7.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/output/iteration8.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/output/iteration9.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/output/tri0.png" beforeDir="false" afterPath="$PROJECT_DIR$/PolygonArt/output/tri0.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/output/tri1000.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/output/tri1500.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/output/tri2000.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/output/tri2500.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/output/tri3000.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/output/tri3500.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/output/tri4000.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/output/tri4500.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/output/tri500.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/output/tri5000.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/output/tri5500.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/output/tri6000.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/output/tri6500.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/output/tri7000.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/output/tri7500.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/output/tri8000.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/output/tri8500.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/output/tri9000.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/marker.py" beforeDir="false" afterPath="$PROJECT_DIR$/PolygonArt/marker.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/PolygonArt/point.py" beforeDir="false" afterPath="$PROJECT_DIR$/PolygonArt/point.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/PolygonArt/poly_renderer.py" beforeDir="false" afterPath="$PROJECT_DIR$/PolygonArt/poly_renderer.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri4199" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri4200" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri4205" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri4206" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri4217" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri4218" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri4220" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri4229" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri4230" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri4240" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri4241" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri4242" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri4251" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri4254" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri4265" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri4267" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri4270" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri4277" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri4278" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri4280" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri4282" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri4283" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri4288" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri4290" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri4301" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri4313" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri4320" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri4324" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri4330" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri4337" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri4340" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri4350" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri4354" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri4360" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri4366" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri4377" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri4380" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri4388" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri4400" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri4402" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri4416" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri4420" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri4428" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri4430" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri4440" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri4450" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri4452" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri4460" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri4465" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri4470" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri4478" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri4480" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri4490" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri4500" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri4504" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri4510" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri4517" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri4520" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri4528" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri4530" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri4540" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri4541" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri4556" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri4569" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri4580" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri4585" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri4597" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri4610" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri4611" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri4620" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri4626" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri4630" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri4637" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri4640" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri4650" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri4660" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri4669" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri4670" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri4680" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri4681" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri4690" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri4694" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri4700" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri4705" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri4710" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri4718" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri4720" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri4730" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri4732" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri4744" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri4750" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri4756" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri4760" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri4770" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri4771" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri4784" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri4790" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri4798" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri4816" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri4820" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri4826" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri4830" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri4837" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri4840" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri4848" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri4850" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri4858" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri4860" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri4869" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri4870" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri4880" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri4883" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri4899" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri4900" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri4910" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri4911" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri4925" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri4930" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri4936" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri4940" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri4950" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri4960" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri4961" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri4970" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri4980" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri4981" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri4990" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri4995" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri5000" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri5005" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri5010" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri5018" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri5020" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri5030" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri5031" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri5040" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri5043" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri5050" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri5056" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri5060" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri5069" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri5070" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri5080" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri5081" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri5090" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri5095" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri5100" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri5107" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri5110" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri5118" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri5120" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri5131" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri5140" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri5144" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri5156" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri5160" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri5168" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri5170" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri5180" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri5181" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri5194" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri5200" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri5205" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri5210" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri5217" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri5233" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri5240" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri5244" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri5250" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri5256" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri5270" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri5272" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri5284" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri5290" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri5297" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri5300" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri5307" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri5310" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri5320" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri5321" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri5330" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri5333" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri5340" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri5345" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri5350" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri5355" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri5360" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri5367" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri5370" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri5376" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri5380" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri5389" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri5390" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri5400" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri5401" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri5410" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri5411" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri5422" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri5437" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri5450" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri5463" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri5476" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri5491" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri5502" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri5515" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri5525" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri5538" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri5551" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri5562" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri5576" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri5588" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri5600" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri5614" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri5625" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri5637" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri5650" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri5661" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri5675" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolygonArt/states/tri5688" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/PolygonArt/tri_handler.py" beforeDir="false" afterPath="$PROJECT_DIR$/PolygonArt/tri_handler.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolygonArt/triangle.py" beforeDir="false" afterPath="$PROJECT_DIR$/PolygonArt/triangle.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -308,8 +21,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/PolygonArt/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+            <state relative-caret-position="119">
+              <caret line="28" column="35" selection-start-line="28" selection-start-column="35" selection-end-line="28" selection-end-column="35" />
               <folding>
                 <element signature="e#0#28#0" expanded="true" />
               </folding>
@@ -320,8 +33,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/PolygonArt/poly_renderer.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="362">
-              <caret line="62" column="29" selection-start-line="62" selection-start-column="29" selection-end-line="62" selection-end-column="29" />
+            <state relative-caret-position="47">
+              <caret line="47" column="23" selection-start-line="47" selection-start-column="23" selection-end-line="47" selection-end-column="23" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
               </folding>
@@ -329,15 +42,23 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/PolygonArt/tri_handler.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="132">
-              <caret line="484" column="31" selection-start-line="484" selection-start-column="31" selection-end-line="484" selection-end-column="31" />
+            <state relative-caret-position="115">
+              <caret line="317" column="12" selection-start-line="317" selection-start-column="12" selection-end-line="317" selection-end-column="12" />
               <folding>
-                <element signature="e#0#94#0" expanded="true" />
-                <marker date="1561655549119" expanded="true" signature="5621:6057" ph="..." />
+                <marker date="1562185780709" expanded="true" signature="5542:5978" ph="..." />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/PolygonArt/marker.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="204">
+              <caret line="12" column="30" selection-start-line="12" selection-start-column="30" selection-end-line="12" selection-end-column="30" />
             </state>
           </provider>
         </entry>
@@ -354,19 +75,68 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/PolygonArt/border_node.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1938">
-              <caret line="36" column="63" selection-start-line="36" selection-start-column="63" selection-end-line="36" selection-end-column="63" />
+            <state relative-caret-position="187">
+              <caret line="11" column="36" selection-start-line="11" selection-start-column="36" selection-end-line="11" selection-end-column="36" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/PolygonArt/point.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="9" column="38" selection-start-line="9" selection-start-column="38" selection-end-line="9" selection-end-column="38" />
+            <state relative-caret-position="73">
+              <caret line="293" selection-start-line="293" selection-end-line="293" />
               <folding>
-                <element signature="e#0#11#0" expanded="true" />
+                <element signature="e#80#310#0" />
+                <element signature="e#164#253#0" />
+                <element signature="e#292#381#0" />
+                <element signature="e#420#466#0" />
+                <element signature="e#669#687#0" />
+                <element signature="e#628#683#0" />
+                <element signature="e#780#924#0" />
+                <element signature="e#1027#1455#0" />
+                <element signature="e#1121#1432#0" />
+                <element signature="e#1206#1271#0" />
+                <element signature="e#1461#1520#0" />
+                <element signature="e#1635#3378#0" />
+                <element signature="e#1686#1774#0" />
+                <element signature="e#1967#2920#0" />
+                <element signature="e#2216#2544#0" />
+                <element signature="e#2471#2478#0" />
+                <element signature="e#2601#2920#0" />
+                <element signature="e#2847#2854#0" />
+                <element signature="e#2947#3277#0" />
+                <element signature="e#3384#3443#0" />
+                <element signature="e#3667#4815#0" />
+                <element signature="e#3937#4518#0" />
+                <element signature="e#4184#4518#0" />
+                <element signature="e#4570#4706#0" />
+                <element signature="e#4880#5078#0" />
+                <element signature="e#5110#5356#0" />
+                <element signature="e#5407#5462#0" />
+                <element signature="e#5505#5562#0" />
+                <element signature="e#5605#5662#0" />
+                <element signature="e#5668#5730#0" />
+                <element signature="e#5909#5943#0" />
+                <element signature="e#5984#6012#0" />
+                <element signature="e#6065#6099#0" />
+                <element signature="e#6133#6154#0" />
+                <element signature="e#6157#6193#0" />
+                <element signature="e#6288#6369#0" />
+                <element signature="e#6372#6406#0" />
+                <element signature="e#6500#6592#0" />
+                <element signature="e#6595#6631#0" />
+                <element signature="e#6727#6814#0" />
+                <element signature="e#6913#7549#0" />
+                <element signature="e#7446#7549#0" />
+                <element signature="e#7606#7891#0" />
+                <element signature="e#7955#8089#0" />
+                <element signature="e#7962#8089#0" />
+                <element signature="e#8137#8373#0" />
+                <element signature="e#8962#9023#0" />
+                <element signature="e#9133#9194#0" />
+                <element signature="e#8983#9023#0" />
+                <element signature="e#9060#9108#0" />
               </folding>
             </state>
           </provider>
@@ -375,8 +145,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/PolygonArt/triangle.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret column="23" selection-start-column="23" selection-end-column="23" />
+            <state relative-caret-position="612">
+              <caret line="39" column="25" selection-start-line="39" selection-start-column="25" selection-end-line="39" selection-end-column="25" />
             </state>
           </provider>
         </entry>
@@ -392,28 +162,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>&quot;Iteration</find>
-      <find>get_color</find>
-      <find>test_render</find>
-      <find>len</find>
-      <find>len(self.bor</find>
-      <find>&quot;len</find>
-      <find>print(</find>
-      <find>debug</find>
-      <find>save_sta</find>
-      <find>save_stat</find>
-      <find>save_state</find>
-      <find>border_loop</find>
-      <find>s:</find>
-      <find>find</find>
-      <find>new_triangle</find>
-      <find>two or</find>
-      <find>% 1</find>
-      <find>test_ren</find>
-      <find>bridges</find>
-      <find>if Tru</find>
-      <find>step{</find>
-      <find>if tru</find>
       <find>tri{</find>
       <find>if Tr</find>
       <find>if True</find>
@@ -422,6 +170,28 @@
       <find>pixels_in</find>
       <find>self.tris</find>
       <find>pixels_in_tr</find>
+      <find>save_s</find>
+      <find>states</find>
+      <find>points</find>
+      <find>.poin</find>
+      <find>.points</find>
+      <find>flip_e</find>
+      <find>add_edge</find>
+      <find>print(</find>
+      <find>flip</find>
+      <find>initialized</find>
+      <find>Marker</find>
+      <find>remove</find>
+      <find>remove_ed</find>
+      <find>self.inter</find>
+      <find>self.intern</find>
+      <find>self.add_edge</find>
+      <find>auto_</find>
+      <find>self.internal_edges.append</find>
+      <find>def link</find>
+      <find>raise</find>
+      <find>Iteration</find>
+      <find>variance</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -439,19 +209,19 @@
         <option value="$PROJECT_DIR$/main.py" />
         <option value="$PROJECT_DIR$/PolygonArt/time_handler.py" />
         <option value="$PROJECT_DIR$/PolygonArt/states/marker.py" />
-        <option value="$PROJECT_DIR$/PolygonArt/marker.py" />
-        <option value="$PROJECT_DIR$/PolygonArt/border_node.py" />
-        <option value="$PROJECT_DIR$/PolygonArt/tri_handler.py" />
         <option value="$PROJECT_DIR$/PolygonArt/triangle.py" />
-        <option value="$PROJECT_DIR$/PolygonArt/poly_renderer.py" />
-        <option value="$PROJECT_DIR$/PolygonArt/main.py" />
+        <option value="$PROJECT_DIR$/PolygonArt/marker.py" />
         <option value="$PROJECT_DIR$/PolygonArt/point.py" />
+        <option value="$PROJECT_DIR$/PolygonArt/border_node.py" />
+        <option value="$PROJECT_DIR$/PolygonArt/main.py" />
+        <option value="$PROJECT_DIR$/PolygonArt/poly_renderer.py" />
+        <option value="$PROJECT_DIR$/PolygonArt/tri_handler.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="-8" />
-    <option name="width" value="1359" />
+    <option name="width" value="1309" />
     <option name="height" value="1038" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -578,17 +348,6 @@
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
     </layout>
   </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/PolygonArt/border_node.py</url>
-          <line>152</line>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
-  </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/input.png" />
     <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python36/Lib/encodings/cp1252.py">
@@ -633,8 +392,91 @@
     <entry file="file://$PROJECT_DIR$/PolygonArt/states/marker.py" />
     <entry file="file://$PROJECT_DIR$/PolygonArt/marker.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="13" column="16" selection-start-line="13" selection-start-column="16" selection-end-line="13" selection-end-column="16" />
+        <state relative-caret-position="204">
+          <caret line="12" column="30" selection-start-line="12" selection-start-column="30" selection-end-line="12" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/PolygonArt/triangle.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="612">
+          <caret line="39" column="25" selection-start-line="39" selection-start-column="25" selection-end-line="39" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/PolygonArt/point.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="73">
+          <caret line="293" selection-start-line="293" selection-end-line="293" />
+          <folding>
+            <element signature="e#80#310#0" />
+            <element signature="e#164#253#0" />
+            <element signature="e#292#381#0" />
+            <element signature="e#420#466#0" />
+            <element signature="e#669#687#0" />
+            <element signature="e#628#683#0" />
+            <element signature="e#780#924#0" />
+            <element signature="e#1027#1455#0" />
+            <element signature="e#1121#1432#0" />
+            <element signature="e#1206#1271#0" />
+            <element signature="e#1461#1520#0" />
+            <element signature="e#1635#3378#0" />
+            <element signature="e#1686#1774#0" />
+            <element signature="e#1967#2920#0" />
+            <element signature="e#2216#2544#0" />
+            <element signature="e#2471#2478#0" />
+            <element signature="e#2601#2920#0" />
+            <element signature="e#2847#2854#0" />
+            <element signature="e#2947#3277#0" />
+            <element signature="e#3384#3443#0" />
+            <element signature="e#3667#4815#0" />
+            <element signature="e#3937#4518#0" />
+            <element signature="e#4184#4518#0" />
+            <element signature="e#4570#4706#0" />
+            <element signature="e#4880#5078#0" />
+            <element signature="e#5110#5356#0" />
+            <element signature="e#5407#5462#0" />
+            <element signature="e#5505#5562#0" />
+            <element signature="e#5605#5662#0" />
+            <element signature="e#5668#5730#0" />
+            <element signature="e#5909#5943#0" />
+            <element signature="e#5984#6012#0" />
+            <element signature="e#6065#6099#0" />
+            <element signature="e#6133#6154#0" />
+            <element signature="e#6157#6193#0" />
+            <element signature="e#6288#6369#0" />
+            <element signature="e#6372#6406#0" />
+            <element signature="e#6500#6592#0" />
+            <element signature="e#6595#6631#0" />
+            <element signature="e#6727#6814#0" />
+            <element signature="e#6913#7549#0" />
+            <element signature="e#7446#7549#0" />
+            <element signature="e#7606#7891#0" />
+            <element signature="e#7955#8089#0" />
+            <element signature="e#7962#8089#0" />
+            <element signature="e#8137#8373#0" />
+            <element signature="e#8962#9023#0" />
+            <element signature="e#9133#9194#0" />
+            <element signature="e#8983#9023#0" />
+            <element signature="e#9060#9108#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/PolygonArt/border_node.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="36" selection-start-line="11" selection-start-column="36" selection-end-line="11" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/PolygonArt/main.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="28" column="35" selection-start-line="28" selection-start-column="35" selection-end-line="28" selection-end-column="35" />
+          <folding>
+            <element signature="e#0#28#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -645,57 +487,22 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/PolygonArt/border_node.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1938">
-          <caret line="36" column="63" selection-start-line="36" selection-start-column="63" selection-end-line="36" selection-end-column="63" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/PolygonArt/tri_handler.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="132">
-          <caret line="484" column="31" selection-start-line="484" selection-start-column="31" selection-end-line="484" selection-end-column="31" />
-          <folding>
-            <element signature="e#0#94#0" expanded="true" />
-            <marker date="1561655549119" expanded="true" signature="5621:6057" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/PolygonArt/triangle.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="23" selection-start-column="23" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/PolygonArt/poly_renderer.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="362">
-          <caret line="62" column="29" selection-start-line="62" selection-start-column="29" selection-end-line="62" selection-end-column="29" />
+        <state relative-caret-position="47">
+          <caret line="47" column="23" selection-start-line="47" selection-start-column="23" selection-end-line="47" selection-end-column="23" />
           <folding>
             <element signature="e#0#10#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/PolygonArt/main.py">
+    <entry file="file://$PROJECT_DIR$/PolygonArt/tri_handler.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+        <state relative-caret-position="115">
+          <caret line="317" column="12" selection-start-line="317" selection-start-column="12" selection-end-line="317" selection-end-column="12" />
           <folding>
-            <element signature="e#0#28#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/PolygonArt/point.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="38" selection-start-line="9" selection-start-column="38" selection-end-line="9" selection-end-column="38" />
-          <folding>
-            <element signature="e#0#11#0" expanded="true" />
+            <marker date="1562185780709" expanded="true" signature="5542:5978" ph="..." />
           </folding>
         </state>
       </provider>

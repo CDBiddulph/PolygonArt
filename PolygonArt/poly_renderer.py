@@ -30,8 +30,8 @@ class PolyRenderer:
             if len(unscaled_tri_pix) != 0:
                 self.paint_pixels(tri_pix, tri_handler.median_color(unscaled_tri_pix))
             elif len(tri_pix) != 0:
-                x = int(unscaled_tri.points[0].x)
-                y = int(unscaled_tri.points[0].y)
+                x = int(unscaled_tri.get_points()[0].x)
+                y = int(unscaled_tri.get_points()[0].y)
                 x = x if x < self.width else self.width - 1
                 y = y if y < self.height else self.height - 1
                 self.paint_pixels(tri_pix, tri_handler.get_color((x, y)))
@@ -47,14 +47,16 @@ class PolyRenderer:
                 self.paint_pixels(tri_pix, (0, 0, 0) if flag else (255, 255, 255))
         self.save_image(path)
 
-    variance_range = 20000
+    variance_range = 140000
 
     def variance_render(self, path):
         tri_handler = th.TriHandler(self.i_pix, None)
-        for tri in self.tris:
+        for unscaled_tri in self.tris:
+            unscaled_tri_pix = th.pixels_in_tri(unscaled_tri)
+            tri = self.scaled_tri(unscaled_tri)
             tri_pix = th.pixels_in_tri(tri)
-            if len(tri_pix) != 0:
-                hue = tri_handler.variance(tri_pix) / self.variance_range
+            if len(unscaled_tri_pix) != 0:
+                hue = tri_handler.variance(unscaled_tri_pix) / self.variance_range
                 hue = hue if hue < 1 else 1
                 hue = (1 - hue) * 0.7
                 hue = colorsys.hsv_to_rgb(hue, 1.0, 1.0)
@@ -111,7 +113,7 @@ class PolyRenderer:
     def scaled_tri(self, tri):
         if self.xs == 1 and self.ys == 1:
             return tri
-        points = tri.points
+        points = tri.get_points()
         p0 = Point(points[0].x * self.xs, points[0].y * self.ys)
         p1 = Point(points[1].x * self.xs, points[1].y * self.ys)
         p2 = Point(points[2].x * self.xs, points[2].y * self.ys)

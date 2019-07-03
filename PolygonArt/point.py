@@ -256,6 +256,34 @@ def on_same_edge(p1, p2, width, height):
         (p1.on_bottom_edge(height) and p2.on_bottom_edge(height))
 
 
+def opposite_edge(edge):
+    pos_oriented = None
+    neg_oriented = None
+    smallest_pos = None
+    smallest_neg = None
+
+    adj1 = edge[0].adjacent
+    adj2 = edge[1].adjacent
+
+    for p1 in adj1:
+        for p2 in adj2:
+            if p1 is p2:  # once an intersection between the lists is found
+                orient_v = orientation_value(edge[0], edge[1], p1)
+                if orient_v > 0 and (smallest_pos is None or smallest_pos > orient_v):
+                    pos_oriented = p1
+                    smallest_pos = orient_v
+                elif orient_v < 0 and (smallest_neg is None or smallest_neg < orient_v):
+                    neg_oriented = p1
+                    smallest_neg = orient_v
+
+    if pos_oriented is not None and neg_oriented is not None:
+        # if the two triangles formed by the new edge + one point each in the original edge are opposite orientations
+        if orientation_value(edge[0], pos_oriented, neg_oriented) * \
+                orientation_value(edge[1], pos_oriented, neg_oriented) < 0:
+            return pos_oriented, neg_oriented  # order is not actually relevant here
+    return None
+
+
 def orientation_value(p1, p2, p3):
     if isinstance(p1, Point):
         p1 = p1.to_tuple()
@@ -263,7 +291,23 @@ def orientation_value(p1, p2, p3):
         p2 = p2.to_tuple()
     if isinstance(p3, Point):
         p3 = p3.to_tuple()
-    return (p2[1] - p1[1]) * (p3[0] - p2[0]) - (p2[0] - p1[0]) * (p3[1] - p2[1])
+
+    # rounding allows an accurate output of "0" for cases in which all points are on an edge
+    # p1x = round(p1[0], 5)
+    # p1y = round(p1[1], 5)
+    # p2x = round(p2[0], 5)
+    # p2y = round(p2[1], 5)
+    # p3x = round(p3[0], 5)
+    # p3y = round(p3[1], 5)
+
+    p1x = p1[0]
+    p1y = p1[1]
+    p2x = p2[0]
+    p2y = p2[1]
+    p3x = p3[0]
+    p3y = p3[1]
+
+    return (p2y - p1y) * (p3x - p2x) - (p2x - p1x) * (p3y - p2y)
 
 
 # returns true if going from p1 to p2 to p3 back to p1 is a CW loop, false if CCW, None if colinear
