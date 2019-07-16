@@ -1,12 +1,7 @@
 class Marker:
-    def __init__(self, x, y, color):
+    def __init__(self, x, y, color=None):
         self.x = x
         self.y = y
-        self.color = color
-
-    def __init__(self, point, color=None):
-        self.x = point.x
-        self.y = point.y
         if color is None:
             self.color = get_color(6)
         else:

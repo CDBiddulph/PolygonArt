@@ -1,4 +1,5 @@
-from point import Point, slope, intersection, segment_intersection, on_same_edge, is_clockwise, opposite_edge
+from point import Point, slope, intersection, segment_intersection,on_same_edge, is_clockwise, opposite_edge,\
+    distance_squared
 from border_node import BorderNode, loop_from_list, link
 from marker import Marker, get_color
 from triangle import Triangle
@@ -46,15 +47,12 @@ class TriHandler:
         if len(self.border_loops) == 0:  # necessary because of state saving
             self.border_loops.append(self.first_border_node(target_v, v_allowance, min_leap, max_leap))
         while len(self.border_loops) != 0:
-            # print("BL len:", len(self.border_loops))
-
             step_count += 1
-            # if step_count >= 0:
-            #     test_renderer = rend.PolyRenderer(self.pixels, self.tris, scale=4.0)
-            #     test_renderer.markers = self.border_loop_markers()
-            #     test_renderer.render('output\\bordered{0}.png'.format(self.tri_num))
-
-            # self.save_state("tri{0}".format(self.tri_num))
+            if self.tri_num >= 4600:
+                test_renderer = rend.PolyRenderer(self.pixels, self.tris, scale=4.0)
+                test_renderer.markers = self.border_loop_markers()
+                test_renderer.render('output\\bordered{0}.png'.format(self.tri_num))
+                self.save_state("step{0}".format(self.tri_num))
 
             self.step(self.border_loops.pop(0), target_v, v_allowance, min_leap, max_leap)
 
@@ -116,7 +114,7 @@ class TriHandler:
             test_renderer.markers = list()
             test_renderer.render('output\\tri{0}.png'.format(self.tri_num))
             # test_renderer.variance_render('output\\variance{0}.png'.format(self.tri_num))
-            # self.save_state("debug{0}".format(self.tri_num))
+            self.save_state("debug{0}".format(self.tri_num))
 
         self.tri_num += 1
 
@@ -311,12 +309,12 @@ class TriHandler:
 
     def adjust_points(self, t_shift_size, max_f_shift, num_iter):
         for iteration in range(num_iter):
-            # self.flip_edges()
+            self.flip_edges()
             for p in range(len(self.points)):  # might not be necessary to do this every iteration
                 self.points[p].sort_adjacent()
-            test_renderer = rend.PolyRenderer(self.pixels, self.tris, scale=4.0)
+            test_renderer = rend.PolyRenderer(self.pixels, self.tris, scale=2.0)
             test_renderer.render('output\iteration{}.png'.format(iteration))
-            # test_renderer.variance_render('output\\iteration{}v.png'.format(iteration))
+            test_renderer.variance_render('output\\iteration{}v.png'.format(iteration))
             self.print_net_variance()
             print("Iteration", (iteration + 1))
             for p in range(len(self.points)):
@@ -362,26 +360,42 @@ class TriHandler:
                     point.x = final_point[0]
                     point.y = final_point[1]
 
-    def flip_edges(self):
+    def flip_edges(self, min_sabr=0.05):
         new_internal_edges = list()
         while len(self.internal_edges) != 0:
             edge = self.internal_edges.pop()
             o_edge = opposite_edge(edge)
             if o_edge is not None:
+                edge_len_squared = distance_squared(edge[0], edge[1])
+                o_edge_len_squared = distance_squared(o_edge[0], o_edge[1])
+
+                # sabr = "squared altitude-base ratio"
+                current_too_skinny = min_sabr > min(
+                    o_edge[0].dist_squared_from_line(edge[0], edge[1]) / edge_len_squared,
+                    o_edge[1].dist_squared_from_line(edge[0], edge[1]) / edge_len_squared)
+                new_too_skinny = min_sabr > min(
+                    edge[0].dist_squared_from_line(o_edge[0], o_edge[1]) / o_edge_len_squared,
+                    edge[1].dist_squared_from_line(o_edge[0], o_edge[1]) / o_edge_len_squared)
+
                 current_tri1 = [o_edge[0], edge[0], edge[1]]
                 current_tri2 = [o_edge[1], edge[0], edge[1]]
-                current_var1 = self.variance(pixels_in_tri(current_tri1))
-                current_var2 = self.variance(pixels_in_tri(current_tri2))
-
                 new_tri1 = [edge[0], o_edge[0], o_edge[1]]
                 new_tri2 = [edge[1], o_edge[0], o_edge[1]]
-                new_var1 = self.variance(pixels_in_tri(new_tri1))
-                new_var2 = self.variance(pixels_in_tri(new_tri2))
 
-                # if the triangle does not contain any pixels, it MUST be flipped
-                # a bit of an odd move, but maybe it'll discourage small/skinny triangles
-                if None in (current_var1, current_var2, new_var1, new_var2) or \
-                        new_var1 + new_var2 < current_var1 + current_var1:
+                if new_too_skinny == current_too_skinny:  # we won't check var_improves if (F, T) or (T, F)
+                    current_var1 = self.variance(pixels_in_tri(current_tri1))
+                    current_var2 = self.variance(pixels_in_tri(current_tri2))
+                    new_var1 = self.variance(pixels_in_tri(new_tri1))
+                    new_var2 = self.variance(pixels_in_tri(new_tri2))
+
+                    var_improves = None not in (current_var1, current_var2, new_var1, new_var2) and \
+                        new_var1 + new_var2 < current_var1 + current_var1
+
+                # the edge will be flipped if a bordering triangle is currently too skinny (and flipping will fix that)
+                # or if the variance would be better in the other direction
+                if (current_too_skinny and not new_too_skinny) or \
+                        (current_too_skinny and var_improves) or \
+                        (not new_too_skinny and var_improves):
                     # flip the edge
 
                     self.tris.remove(Triangle(current_tri1))

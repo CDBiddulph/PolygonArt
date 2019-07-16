@@ -47,7 +47,7 @@ class PolyRenderer:
                 self.paint_pixels(tri_pix, (0, 0, 0) if flag else (255, 255, 255))
         self.save_image(path)
 
-    variance_range = 140000
+    variance_range = 10000
 
     def variance_render(self, path):
         tri_handler = th.TriHandler(self.i_pix, None)
@@ -56,7 +56,7 @@ class PolyRenderer:
             tri = self.scaled_tri(unscaled_tri)
             tri_pix = th.pixels_in_tri(tri)
             if len(unscaled_tri_pix) != 0:
-                hue = tri_handler.variance(unscaled_tri_pix) / self.variance_range
+                hue = tri_handler.variance(unscaled_tri_pix) / len(unscaled_tri_pix) / self.variance_range
                 hue = hue if hue < 1 else 1
                 hue = (1 - hue) * 0.7
                 hue = colorsys.hsv_to_rgb(hue, 1.0, 1.0)
